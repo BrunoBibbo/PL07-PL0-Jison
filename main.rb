@@ -2,7 +2,6 @@ $:.unshift "."
 require 'sinatra'
 require "sinatra/reloader" if development?
 require 'sinatra/flash'
-require 'pl0_program'
 require 'data_mapper'
 require 'auth'
 require 'pp'
