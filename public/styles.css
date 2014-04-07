@@ -98,3 +98,8 @@ nav a.current {
   width: 1000px;
   overflow: auto;
 }
+
+.success {
+  color: #00ff33;
+  background-color: #444444; 
+}
