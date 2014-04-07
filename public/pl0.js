@@ -71,7 +71,7 @@
     recoverable: (boolean: TRUE when the parser has a error recovery rule available for this particular error)
   }
 */
-var calculator = (function(){
+var pl0 = (function(){
 var parser = {trace: function trace() { },
 yy: {},
 symbols_: {"error":2,"prog":3,"expressions":4,"EOF":5,"s":6,";":7,"e":8,"ID":9,"=":10,"PI":11,"E":12,"+":13,"-":14,"*":15,"/":16,"^":17,"!":18,"%":19,"(":20,")":21,"NUMBER":22,"$accept":0,"$end":1},
