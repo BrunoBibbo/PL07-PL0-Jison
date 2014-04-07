@@ -1,6 +1,10 @@
 require 'sinatra'
 require 'rest-client'
 require 'json'
+require "rubygems"
+require "bundler/setup"
+require 'rack/ssl'
+require 'sinatra/auth/github'
 
 CLIENT_ID = ENV['ebdc67dadba7cd25f020']
 CLIENT_SECRET = ENV['76ac0b4769c02cb5361855c1638374724098435c']
