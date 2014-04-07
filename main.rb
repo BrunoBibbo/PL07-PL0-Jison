@@ -2,27 +2,13 @@ $:.unshift "."
 require 'sinatra'
 require "sinatra/reloader" if development?
 require 'sinatra/flash'
-require 'data_mapper'
+require 'pl0_program'
 require 'auth'
 require 'pp'
 
 enable :sessions
 set :session_secret, '*&(^#234)'
 set :reserved_words, %w{grammar test login auth}
-
-# full path!
-DataMapper.setup(:default, 
-                 ENV['DATABASE_URL'] || "sqlite3://#{Dir.pwd}/database.db" )
-
-class PL0Program
-  include DataMapper::Resource
-  
-  property :name, String, :key => true
-  property :source, String, :length => 1..1024
-end
-
-  DataMapper.finalize
-  DataMapper.auto_upgrade!
 
 helpers do
   def current?(path='/')
@@ -40,6 +26,7 @@ get '/tests' do
 end
 
 get '/:selected?' do |selected|
+  pp session[:auth]
   programs = PL0Program.all
   pp programs
   puts "selected = #{selected}"
