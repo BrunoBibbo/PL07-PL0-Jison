@@ -2,8 +2,8 @@ require 'sinatra'
 require 'rest-client'
 require 'json'
 
-CLIENT_ID = ENV['GH_BASIC_CLIENT_ID']
-CLIENT_SECRET = ENV['GH_BASIC_SECRET_ID']
+CLIENT_ID = ENV['ebdc67dadba7cd25f020']
+CLIENT_SECRET = ENV['76ac0b4769c02cb5361855c1638374724098435c']
 
 get '/' do
   erb :index, :locals => {:client_id => CLIENT_ID}
