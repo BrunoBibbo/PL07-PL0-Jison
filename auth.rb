@@ -1,11 +1,13 @@
 require 'omniauth-oauth2'
 require 'omniauth-google-oauth2'
+require 'omniauth-twitter'
 
 use OmniAuth::Builder do
-  config = YAML.load_file 'config/config_template.yml'
-  provider :google_oauth2, config['identifier'], config['secret']
+  #config = YAML.load_file 'config/config_template.yml'
+  #provider :google_oauth2, config['identifier'], config['secret']
 
-  #provider :google_oauth2, '427790437902-rrctbhjqbtntbmqv868gciesa4lae9t6.apps.googleusercontent.com','yhulvz3NyNikKRgw-8nxJ3fg'
+  provider :google_oauth2, '427790437902-rrctbhjqbtntbmqv868gciesa4lae9t6.apps.googleusercontent.com','yhulvz3NyNikKRgw-8nxJ3fg'
+  provider :twitter, 'urwk8N1OYdwDKSKH8P188M93X', 'jx17JqcqEn4zMiuv2l5rq4XxCclR255n6xPpw7LxB0ENwRXYF2'
 
 end
 
