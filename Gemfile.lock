@@ -84,8 +84,8 @@ GEM
     omniauth-google-oauth2 (0.2.2)
       omniauth (~> 1.0)
       omniauth-oauth2
-    omniauth-twitter (0.0.6)
-      omniauth-oauth (~> 1.0)
+    omniauth-facebook (1.4.1)
+      omniauth-oauth2 (~> 1.1.0)
     omniauth-oauth2 (1.1.2)
       faraday (>= 0.8, < 0.10)
       multi_json (~> 1.3)
@@ -129,7 +129,7 @@ DEPENDENCIES
   do_sqlite3
   omniauth
   omniauth-google-oauth2
-  omniauth-twitter
+  omniauth-facebook
   pg
   sass
   sinatra
