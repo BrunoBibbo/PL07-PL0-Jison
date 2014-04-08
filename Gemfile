@@ -9,6 +9,7 @@ gem 'data_mapper'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-github'
+gem 'omniauth-twitter'
 gem 'sass'
 
 group :development do
