@@ -26,12 +26,15 @@ get '/tests' do
 end
 
 get '/:selected?' do |selected|
+  puts "*************@auth*****************"
+  console.log(session[:name])
+  puts session[:name]
   pp session[:auth]
   programs = PL0Program.all
   pp programs
   puts "selected = #{selected}"
   c  = PL0Program.first(:name => selected)
-  source = if c then c.source else "a = 3-2-1." end
+  source = if c then c.source else "a = 3-2-1" end
   erb :index, 
       :locals => { :programs => programs, :source => source }
 end
