@@ -136,7 +136,4 @@ DEPENDENCIES
   sinatra
   sinatra-contrib
   sinatra-flash
-  thin   
-
-
-
+  thin
