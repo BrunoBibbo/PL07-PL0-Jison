@@ -8,6 +8,7 @@ gem "thin"
 gem 'data_mapper'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
+gem 'omniauth-github'
 gem 'sass'
 
 group :development do
