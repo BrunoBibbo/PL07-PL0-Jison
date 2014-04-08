@@ -6,7 +6,7 @@ use OmniAuth::Builder do
   provider :github, config['identifier'], config['secret']
 end
 
-get '/auth/:name/callback' do
+get '/authgh/:name/callback' do
   session[:auth] = @auth = request.env['omniauth.auth']
   session[:name] = @auth['info'].name
   session[:image] = @auth['info'].image
