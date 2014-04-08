@@ -9,7 +9,7 @@ use OmniAuth::Builder do
 
   provider :google_oauth2, '427790437902-rrctbhjqbtntbmqv868gciesa4lae9t6.apps.googleusercontent.com','yhulvz3NyNikKRgw-8nxJ3fg'
   provider :facebook, '1439826656261414','0a6038d294ac824293f52dbfba11e3ab'
-  
+
 end
 
 get '/auth/:provider/callback' do
@@ -27,7 +27,7 @@ get '/auth/:provider/callback' do
   #PP.pp @auth
   #puts "*************@auth.methods*****************"
   #PP.pp @auth.methods.sort
-  flash[:notice] = %Q{<div class="success">Authenticated as #{@auth['info'].name}.</div>}
+  flash[:notice] = %Q{<div class="success">Autenticado como #{@auth['info'].name}.</div>}
   redirect '/'
 end
 

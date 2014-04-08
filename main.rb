@@ -45,7 +45,7 @@ post '/save' do
   if session[:auth] # authenticated
     if settings.reserved_words.include? name  # check it on the client side
       flash[:notice] = 
-        %Q{<div class="error">Can't save file with name '#{name}'.</div>}
+        %Q{<div class="error">No se puede guardar el archivo con nombre '#{name}'.</div>}
       redirect back
     else 
 	  
@@ -62,14 +62,14 @@ post '/save' do
         end
       end
 	  flash[:notice] = 
-        %Q{<div class="success">File saved as #{c.name} by #{session[:name]}.</div>}
+        %Q{<div class="success">Archivo guardado como #{c.name} by #{session[:name]}.</div>}
       pp c
       redirect to '/'+name
     end
   else
     flash[:notice] = 
-      %Q{<div class="error">You are not authenticated.<br />
-         Sign in with Google.
+      %Q{<div class="error">No estás autenticado.<br />
+         Inicia sesión con Google o Facebook.
          </div>}
     redirect back
   end
@@ -84,7 +84,7 @@ post '/delete' do
   if session[:auth] # authenticated
     if settings.reserved_words.include? name  # check it on the client side
       flash[:notice] = 
-        %Q{<div class="error">Can't delete file with name '#{name}'.</div>}
+        %Q{<div class="error">No se puede eliminar el archivo con nombre '#{name}'.</div>}
       redirect back
     else 
       c  = PL0Program.first(:name => name)
@@ -97,8 +97,8 @@ post '/delete' do
     end
   else
     flash[:notice] = 
-      %Q{<div class="error">You are not authenticated.<br />
-         Sign in with Google.
+      %Q{<div class="error">No estás autenticado.<br />
+         Inicia sesión con Google o Facebook.
          </div>}
     redirect back
   end
