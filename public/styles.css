@@ -101,5 +101,6 @@ nav a.current {
 
 .success {
   color: #00ff33;
-  background-color: #EEEEEE; 
+  background-color: #444444; 
+  width: 400px;
 }
