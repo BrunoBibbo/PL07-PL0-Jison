@@ -6,11 +6,29 @@ use OmniAuth::Builder do
   config = YAML.load_file 'config/config_template.yml'
   provider :google_oauth2, config['identifier'], config['secret']
 
-  #config2 = YAML.load_file 'config/configgh_template.yml'
-  #provider :github, config2['identifier'], config2['secret']
+  config2 = YAML.load_file 'config/configgh_template.yml'
+  provider :github, config2['identifier'], config2['secret']
 end
 
-get '/auth/:name/callback' do
+get '/auth/google_oauth2/callback' do
+  session[:auth] = @auth = request.env['omniauth.auth']
+  session[:name] = @auth['info'].name
+  session[:image] = @auth['info'].image
+  puts "params = #{params}"
+  puts "@auth.class = #{@auth.class}"
+  puts "@auth info = #{@auth['info']}"
+  puts "@auth info class = #{@auth['info'].class}"
+  puts "@auth info name = #{@auth['info'].name}"
+  puts "@auth info email = #{@auth['info'].email}"
+  #puts "-------------@auth----------------------------------"
+  #PP.pp @auth
+  #puts "*************@auth.methods*****************"
+  #PP.pp @auth.methods.sort
+  flash[:notice] = %Q{<div class="success">Authenticated as #{@auth['info'].name}.</div>}
+  redirect '/'
+end
+
+get '/auth/github/callback' do
   session[:auth] = @auth = request.env['omniauth.auth']
   session[:name] = @auth['info'].name
   session[:image] = @auth['info'].image
