@@ -1,3 +1,4 @@
+require 'omniauth-oauth2'
 require 'omniauth-github'
 
 use OmniAuth::Builder do
