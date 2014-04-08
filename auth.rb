@@ -9,13 +9,13 @@ use OmniAuth::Builder do
   #config2 = YAML.load_file 'config/configgh_template.yml'
   #provider :github, config2['identifier'], config2['secret']
 
-  provider :google_oauth2, '427790437902-rrctbhjqbtntbmqv868gciesa4lae9t6.apps.googleusercontent.com','yhulvz3NyNikKRgw-8nxJ3fg'
   provider :github, 'ebdc67dadba7cd25f020','76ac0b4769c02cb5361855c1638374724098435c'
+  provider :google_oauth2, '427790437902-rrctbhjqbtntbmqv868gciesa4lae9t6.apps.googleusercontent.com','yhulvz3NyNikKRgw-8nxJ3fg'
+  
 end
 
 get '/auth/:provider/callback' do
-  flash[:notice] = 'holaaaaaaaaaaaaaa'
-  
+
   session[:auth] = @auth = request.env['omniauth.auth']
   session[:name] = @auth['info'].name
   session[:image] = @auth['info'].image
@@ -29,11 +29,11 @@ get '/auth/:provider/callback' do
   #PP.pp @auth
   #puts "*************@auth.methods*****************"
   #PP.pp @auth.methods.sort
-  #flash[:notice] = %Q{<div class="success">Authenticated as #{@auth['info'].name}.</div>}
+  flash[:notice] = %Q{<div class="success">Authenticated as #{@auth['info'].name}.</div>}
   redirect '/'
 end
 
 get '/auth/failure' do
-  #flash[:notice] = params[:message] 
+  flash[:notice] = params[:message] 
   redirect '/'
 end
