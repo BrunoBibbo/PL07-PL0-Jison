@@ -46,8 +46,7 @@ post '/save' do
         %Q{<div class="error">Can't save file with name '#{name}'.</div>}
       redirect back
     else 
-	  flash[:notice] = 
-        %Q{<div class="error">Congratulations! You are authenticated.</div>}
+	  
       c  = PL0Program.first(:name => name)
       if c
         c.source = params["input"]
@@ -60,9 +59,11 @@ post '/save' do
             c.save
         end
       end
+	  flash[:notice] = 
+        %Q{<div class="success">File saved as #{c.name} by #{session[:name]}.</div>}
       pp c
-      redirect '/'
-      end
+      redirect to '/'+name
+    end
   else
     flash[:notice] = 
       %Q{<div class="error">You are not authenticated.<br />
