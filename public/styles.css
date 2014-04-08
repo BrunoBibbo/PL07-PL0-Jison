@@ -35,7 +35,7 @@ nav {
     text-decoration: none;
     display: block;
     padding: 8px;
-    background: #3388BB;
+    background: #CC3333;
     color: white; }
     nav a:hover {
       background: #111111; }
@@ -50,16 +50,16 @@ label {
   display: block; }
 
 nav a.current {
-  background: #3366BB; }
+  background: #990000; }
 
 .flash {
   width: 600px;
   padding: 5px;
   font-weight: bold;
   margin: 20px;
-  background: #3366BB;
+  background: #CC3333;
   color: #990033;
-  border: 1px solid #990033; }
+  border: 1px solid #CC3333; }
 
 #like p {
   font-weight: bold;
@@ -92,7 +92,7 @@ nav a.current {
   color: #444444;
   background-color: #FFFFFF;
   border-radius: 5px;
-  border: 2px solid #3388BB;
+  border: 2px solid #CC3333;
   display: block;
   height: 350px;
   width: 1000px;
