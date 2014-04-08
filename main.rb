@@ -4,7 +4,6 @@ require "sinatra/reloader" if development?
 require 'sinatra/flash'
 require 'pl0_program'
 require 'auth'
-require 'authgh'
 require 'pp'
 
 enable :sessions
