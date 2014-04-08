@@ -1,9 +1,13 @@
 require 'omniauth-oauth2'
 require 'omniauth-google-oauth2'
+require 'omniauth-github'
 
 use OmniAuth::Builder do
   config = YAML.load_file 'config/config_template.yml'
   provider :google_oauth2, config['identifier'], config['secret']
+
+  config2 = YAML.load_file 'config/configgh_template.yml'
+  provider :github, config2['identifier'], config2['secret']
 end
 
 get '/auth/:name/callback' do
