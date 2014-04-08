@@ -14,6 +14,8 @@ use OmniAuth::Builder do
 end
 
 get '/auth/:provider/callback' do
+  flash[:notice] = 'holaaaaaaaaaaaaaa'
+  
   session[:auth] = @auth = request.env['omniauth.auth']
   session[:name] = @auth['info'].name
   session[:image] = @auth['info'].image
