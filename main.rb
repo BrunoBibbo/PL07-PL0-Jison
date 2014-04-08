@@ -27,7 +27,6 @@ end
 
 get '/:selected?' do |selected|
   puts "*************@auth*****************"
-  console.log(session[:name])
   puts session[:name]
   pp session[:auth]
   programs = PL0Program.all
