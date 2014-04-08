@@ -34,6 +34,6 @@ get '/auth/:provider/callback' do
 end
 
 get '/auth/failure' do
-  flash[:notice] = params[:message] 
+  #flash[:notice] = params[:message] 
   redirect '/'
 end
