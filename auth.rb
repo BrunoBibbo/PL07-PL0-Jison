@@ -4,8 +4,6 @@ require 'omniauth-google-oauth2'
 require 'omniauth-facebook'
 
 use OmniAuth::Builder do
-  #config = YAML.load_file 'config/config_template.yml'
-  #provider :google_oauth2, config['identifier'], config['secret']
 
   provider :google_oauth2, '427790437902-rrctbhjqbtntbmqv868gciesa4lae9t6.apps.googleusercontent.com','yhulvz3NyNikKRgw-8nxJ3fg'
   provider :facebook, '1439826656261414','0a6038d294ac824293f52dbfba11e3ab'

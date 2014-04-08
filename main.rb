@@ -62,7 +62,7 @@ post '/save' do
         end
       end
 	  flash[:notice] = 
-        %Q{<div class="success">Archivo guardado como #{c.name} by #{session[:name]}.</div>}
+        %Q{<div class="success">Archivo guardado como #{c.name} por #{session[:name]}.</div>}
       pp c
       redirect to '/'+name
     end
