@@ -127,6 +127,7 @@ DEPENDENCIES
   do_sqlite3
   omniauth
   omniauth-google-oauth2
+  omniauth-github
   pg
   sass
   sinatra
