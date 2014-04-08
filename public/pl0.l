@@ -19,4 +19,4 @@ function idORrw(x) {
 \b[A-Za-z_]\w*\b                 return idORrw(yytext)
 [-*/+^!%=();]                    return yytext;
 <<EOF>>                          return 'EOF'
-.                                return 'INVALID'
+\/.\                                return 'PUNTO'

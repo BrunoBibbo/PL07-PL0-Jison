@@ -74,8 +74,8 @@
 var pl0 = (function(){
 var parser = {trace: function trace() { },
 yy: {},
-symbols_: {"error":2,"prog":3,"expressions":4,"EOF":5,"s":6,";":7,"e":8,"ID":9,"=":10,"PI":11,"E":12,"+":13,"-":14,"*":15,"/":16,"^":17,"!":18,"%":19,"(":20,")":21,"NUMBER":22,"$accept":0,"$end":1},
-terminals_: {2:"error",5:"EOF",7:";",9:"ID",10:"=",11:"PI",12:"E",13:"+",14:"-",15:"*",16:"/",17:"^",18:"!",19:"%",20:"(",21:")",22:"NUMBER"},
+symbols_: {"error":2,"prog":3,"expressions":4,"PUNTO":5,"s":6,";":7,"e":8,"ID":9,"=":10,"PI":11,"E":12,"+":13,"-":14,"*":15,"/":16,"^":17,"!":18,"%":19,"(":20,")":21,"NUMBER":22,"$accept":0,"$end":1},
+terminals_: {2:"error",5:"PUNTO",7:";",9:"ID",10:"=",11:"PI",12:"E",13:"+",14:"-",15:"*",16:"/",17:"^",18:"!",19:"%",20:"(",21:")",22:"NUMBER"},
 productions_: [0,[3,2],[4,1],[4,3],[6,0],[6,1],[8,3],[8,3],[8,3],[8,3],[8,3],[8,3],[8,3],[8,3],[8,2],[8,2],[8,2],[8,3],[8,1],[8,1],[8,1],[8,1]],
 performAction: function anonymous(yytext, yyleng, yylineno, yy, yystate /* action[1] */, $$ /* vstack */, _$ /* lstack */) {
 /* this == yyval */
@@ -635,13 +635,13 @@ case 7:return idORrw(yy_.yytext)
 break;
 case 8:return yy_.yytext;
 break;
-case 9:return 5
+case 9:return 'EOF'
 break;
-case 10:return 'INVALID'
+case 10:return 5
 break;
 }
 },
-rules: [/^(?:\s+|#.*)/,/^(?:\b\d+(\.\d*)?([eE][-+]?\d+)?\b)/,/^(?:;	)/,/^(?:,	)/,/^(?:\b([<>!=]=|[<>])\b)/,/^(?:\(	)/,/^(?:\)	)/,/^(?:\b[A-Za-z_]\w*\b)/,/^(?:[-*/+^!%=();])/,/^(?:$)/,/^(?:.)/],
+rules: [/^(?:\s+|#.*)/,/^(?:\b\d+(\.\d*)?([eE][-+]?\d+)?\b)/,/^(?:;	)/,/^(?:,	)/,/^(?:\b([<>!=]=|[<>])\b)/,/^(?:\(	)/,/^(?:\)	)/,/^(?:\b[A-Za-z_]\w*\b)/,/^(?:[-*/+^!%=();])/,/^(?:$)/,/^(?:\/. )/],
 conditions: {"INITIAL":{"rules":[0,1,2,3,4,5,6,7,8,9,10],"inclusive":true}}
 };
 return lexer;
@@ -656,9 +656,9 @@ return new Parser;
 
 
 if (typeof require !== 'undefined' && typeof exports !== 'undefined') {
-exports.parser = calculator;
-exports.Parser = calculator.Parser;
-exports.parse = function () { return calculator.parse.apply(calculator, arguments); };
+exports.parser = pl0;
+exports.Parser = pl0.Parser;
+exports.parse = function () { return pl0.parse.apply(pl0, arguments); };
 exports.main = function commonjsMain(args) {
     if (!args[1]) {
         console.log('Usage: '+args[0]+' FILE');

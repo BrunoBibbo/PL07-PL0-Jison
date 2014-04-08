@@ -23,7 +23,7 @@ function fact (n) {
 
 %% /* language grammar */
 prog
-    : expressions EOF
+    : expressions PUNTO
         { 
           $$ = $1; 
           console.log($$);
