@@ -2,7 +2,6 @@ require 'omniauth'
 require 'omniauth-oauth2'
 require 'omniauth-google-oauth2'
 require 'omniauth-github'
-require 'omniauth-twitter'
 
 use OmniAuth::Builder do
   #config = YAML.load_file 'config/config_template.yml'
@@ -13,7 +12,6 @@ use OmniAuth::Builder do
 
   provider :github, 'ebdc67dadba7cd25f020','76ac0b4769c02cb5361855c1638374724098435c'
   provider :google_oauth2, '427790437902-rrctbhjqbtntbmqv868gciesa4lae9t6.apps.googleusercontent.com','yhulvz3NyNikKRgw-8nxJ3fg'
-  provider :twitter, 'urwk8N1OYdwDKSKH8P188M93X',   'jx17JqcqEn4zMiuv2l5rq4XxCclR255n6xPpw7LxB0ENwRXYF2'
 
 end
 
