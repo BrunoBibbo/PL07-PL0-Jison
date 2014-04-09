@@ -47,8 +47,13 @@ statements
         { $$ = { Type: $2, left: {ID: $1}, right: {Valor :$3} }; }
     | P ID
         { $$ = { Type: $1, Variables: {ID: $2} }; }
-    | CALL ID
-	{ $$ = { Type: $1, Procedure: {ID: $2} }; }
+    | CALL ID LEFTPAR args RIGHTPAR
+	{ 
+	  if($4)
+	    $$ = { Type: $1, Procedure: {ID: $2, Arguments: $4} };
+	  else
+	    $$ = { Type: $1, Procedure: {ID: $2} }; 
+	}
     | e
     ;
 
@@ -83,4 +88,19 @@ e
         {$$ = Number(yytext);}
     | ID 
         { $$ = symbol_table[yytext] || 0; }
+    ;
+    
+args
+    : /* empty */
+    | idnum
+	{ $$ = $1; }
+    | COMA idnum
+	{ $$ = $2; }
+    ;
+    
+idnum
+    : NUMBER
+	{ $$ = { Type: NUMBER, Value: {Number(yytext)} }; }
+    | ID
+	{ $$ = { Type: ID, Value: {symbol_table[yytext] || 0} }; }
     ;
