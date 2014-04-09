@@ -36,32 +36,32 @@ var assert = chai.assert;
  suite('Pruebas de bloque', function() {
  
   test('Call: ', function(){  
-    var input = pl0.parse("call prueba(24).");
+    var input = pl0.parse("CALL prueba(24).");
     assert.equal('[{"Type":"BLOCK","CONTENT":{"STATEMENTS":{"Type":"call","Procedure":{"ID":"prueba","Arguments":[{"Type":"NUMBER","Value":"24"}]}}}}]', JSON.stringify(input));
   });
 
-  test('Program', function(){  
-    var input = pl0.parse("const a=50, b=200;var x,y;z = 10.");
+  test('Program: ', function(){  
+    var input = pl0.parse("CONST a=50, b=200; VAR x,y; z = 10.");
     assert.equal('[{"type":"=","left":{"type":"CONST","value":"a"},"right":{"type":"NUM","value":50}},{"type":"=","left":{"type":"CONST","value":"b"},"right":{"type":"NUM","value":200}},{"type":"VAR","value":"x"},{"type":"VAR","value":"y"},{"type":"=","left":{"type":"ID","value":"z"},"right":{"type":"NUM","value":10}}]', JSON.stringify(input));
   });
 
-  test('If', function(){  
-    var input = pl0.parse("if a>0 then a=20.");
+  test('If: ', function(){  
+    var input = pl0.parse("IF (a > 0) THEN a = 20.");
     assert.equal('[{"type":"IF","condition":{"type":">","left":{"type":"ID","value":"a"},"right":{"type":"NUM","value":0}},"st":{"type":"=","left":{"type":"ID","value":"a"},"right":{"type":"NUM","value":20}}}]', JSON.stringify(input));
   });
 
-  test('If - Else', function(){  
-    var input = pl0.parse("if a>0 then a=20 else a=50.");
+  test('If - Else: ', function(){  
+    var input = pl0.parse("IF (a > 0) THEN a = 20 ELSE a = 50.");
     assert.equal('[{"type":"IFELSE","condition":{"type":">","left":{"type":"ID","value":"a"},"right":{"type":"NUM","value":0}},"st":{"type":"=","left":{"type":"ID","value":"a"},"right":{"type":"NUM","value":20}},"sf":{"type":"=","left":{"type":"ID","value":"a"},"right":{"type":"NUM","value":50}}}]', JSON.stringify(input));
   });
 
-  test('While', function(){  
-    var input = pl0.parse("while b>0 do b=b+1.");
+  test('While - Do: ', function(){  
+    var input = pl0.parse("WHILE (b > 0) DO b = b+1.");
     assert.equal('[{"type":"WHILE","condition":{"type":">","left":{"type":"ID","value":"b"},"right":{"type":"NUM","value":0}},"st":{"type":"=","left":{"type":"ID","value":"b"},"right":{"type":"+","left":{"type":"ID","value":"b"},"right":{"type":"NUM","value":1}}}}]', JSON.stringify(input));
   });
 
-  test('Procedure', function(){  
-    var input = pl0.parse("procedure a;var a, v;a = 3;v = 4. ");
+  test('Procedure: ', function(){  
+    var input = pl0.parse("PROCEDURE a(); VAR a, v; a = 3; v = 4. ");
     assert.equal('[{"type":"PROCEDURE","value":{"type":"PROCEDURE","value":"a"},"block":[{"type":"VAR","value":"a"},{"type":"VAR","value":"v"},{"type":"=","left":{"type":"ID","value":"a"},"right":{"type":"NUM","value":3}}]},{"type":"=","left":{"type":"ID","value":"v"},"right":{"type":"NUM","value":4}}]', JSON.stringify(input));
   });
 
