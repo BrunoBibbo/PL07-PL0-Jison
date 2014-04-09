@@ -57,11 +57,13 @@ statements
 	    $$ = { Type: $1, Procedure: {ID: $2} }; 
 	}
     | IF condition THEN statements ELSE statements
-	{ $$ = { Type: $1+$5, left: {Condition: $2}, center: {statement: $4}, right: {statement: $6} }; }
+	{ $$ = { Type: $1+$5, left: {Condition: $2}, center: {Statement: $4}, right: {Statement: $6} }; }
     | IF condition THEN statements
-	{ $$ = { Type: $1, left: {Condition: $2}, right: {statement: $4} }; }
+	{ $$ = { Type: $1, left: {Condition: $2}, right: {Statement: $4} }; }
     | BEGIN expressions PCOMA END
-	{ $$ = { Type: $1+$4, Expressions: {statement: $2} }; }
+	{ $$ = { Type: $1+$4, Expressions: {Statement: $2} }; }
+    | WHILE condition DO statements
+	{ $$ = { Type: $1+$3, left: {Condition: $2}, right: {Statement: $4} }; }
     | term
     ;
 
