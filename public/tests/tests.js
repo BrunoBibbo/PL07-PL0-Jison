@@ -1,6 +1,6 @@
 var assert = chai.assert;
  
- suite('Pruebas: ', function() {
+ suite('Operaciones aritméticas', function() {
     
   test('Suma', function(){  
     var input = pl0.parse("a = 5 + 8 + 2.");
@@ -31,7 +31,10 @@ var assert = chai.assert;
     var input = pl0.parse("a = 7 - 1 * 5.");
     assert.equal('[{"Type":"BLOCK","CONTENT":{"STATEMENTS":{"Type":"=","left":{"ID":"a"},"right":{"Value":{"Type":"-","left":{"term":{"Type":"NUMBER","Value":"7"}},"right":{"term":{"Type":"*","left":{"term":{"Type":"NUMBER","Value":"1"}},"right":{"term":{"Type":"NUMBER","Value":"5"}}}}}}}}}]', JSON.stringify(input));
   });
+ });
 
+ suite('Pruebas de bloque', function() {
+ 
   test('Call', function(){  
     var input = pl0.parse("call prueba(24).");
     assert.equal('[{"type":"CALL","arguments":[{"type":"NUM","value":24}],"value":{"type":"PROCEDURE","value":"prueba"}}]', JSON.stringify(input));
