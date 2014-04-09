@@ -140,9 +140,9 @@ case 20: this.$ = $$[$0];
 break;
 case 21: this.$ = $$[$0]; 
 break;
-case 22: this.$ = { Type: 'NUMBER', Value: Number(yytext) }; 
+case 22: this.$ = { Type: 'NUMBER', Value: $$[$0] }; 
 break;
-case 23: this.$ = { Type: 'ID', Value: symbol_table[yytext] || 0 }; 
+case 23: this.$ = { Type: 'ID', Value: $$[$0] }; 
 break;
 }
 },
