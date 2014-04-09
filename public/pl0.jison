@@ -66,8 +66,8 @@ var
     
 procedure
     : /* empty */
-    | PROCEDURE ID PCOMA block PCOMA
-	{ $$ = { Type: $1, ID: $2, Block: $4 }; }
+    | PROCEDURE ID PCOMA block PCOMA procedure
+	{ $$ = [{ Type: $1, ID: $2, Block: $4 }].concat($6); }
     ;
     
 expressions
