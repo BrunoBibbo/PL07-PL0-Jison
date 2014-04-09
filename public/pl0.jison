@@ -92,10 +92,9 @@ e
     
 args
     : /* empty */
-    | idnum
-	{ $$ = $1; }
-    | idnum COMA
-	{ $$ = $2; }
+	{ $$ = []; }
+    | idnum args
+	{ $$ = [$1].concat(args); }
     ;
     
 idnum
