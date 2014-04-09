@@ -44,7 +44,7 @@ expressions
 
 statements
     : ID '=' e
-        { $$ = { Type: $2, left: {ID: $1}, right: {Valor :$3} }; }
+        { $$ = { Type: $2, left: {ID: $1}, right: {Value :$3} }; }
     | P ID
         { $$ = { Type: $1, Variables: {ID: $2} }; }
     | CALL ID LEFTPAR args RIGHTPAR
@@ -59,7 +59,7 @@ statements
 
 e
     : e '+' e
-        {$$ = $1+$3;}
+        {$$ = { Type: $2, left: {e: $1}, right: {e: $3} }; }
     | e '-' e
         {$$ = $1-$3;}
     | e '*' e
@@ -94,7 +94,7 @@ args
     : /* empty */
     | idnum
 	{ $$ = $1; }
-    | COMA idnum
+    | idnum COMA
 	{ $$ = $2; }
     ;
     
