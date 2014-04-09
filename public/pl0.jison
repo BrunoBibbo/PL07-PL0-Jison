@@ -129,19 +129,22 @@ condition
     
 constant
     : ID '=' NUMBER PCOMA
-	{ $$ = [{ Type: $2, left: {ID: $1}, right: {Value: $3} }]; }
+	{ $$ = { Type: $2, left: {ID: $1}, right: {Value: $3} };
+	  console.log("entra en constant simple");
+	}
     | ID '=' NUMBER COMA constant
-	{ $$ = [{ Type: $2, left: {ID: $1}, right: {Value: $3} }];
-	  $$.concat($5); 
+	{ $$ = { Type: $2, left: {ID: $1}, right: {Value: $3} };
+	  console.log($$);
+	  [$$].concat($5); 
 	} 
     ;
     
 vars
     : ID PCOMA
-	{ $$ = [{ Variables: $1 }]; }
+	{ $$ = { Variables: $1 }; }
     | ID COMA vars
 	{ 
-	  $$ = [{ Variables: $1 }]; 
-	  $$.concat($3);
+	  $$ = { Variables: $1 }; 
+	  [$$].concat($3);
 	}
     ;
