@@ -14,7 +14,7 @@ var assert = chai.assert;
 
   test('Multiplicación', function(){  
     var input = pl0.parse("a = 8 * 2 * 5.");
-    assert.equal('[{"type":"=","left":{"type":"ID","value":"a"},"right":{"type":"*","left":{"type":"*","left":{"type":"NUM","value":8},"right":{"type":"NUM","value":2}},"right":{"type":"NUM","value":5}}}]', JSON.stringify(input));
+    assert.equal('[{"Type":"BLOCK","CONTENT":{"STATEMENTS":{"Type":"=","left":{"ID":"a"},"right":{"Value":{"Type":"*","left":{"term":{"Type":"*","left":{"term":{"Type":"NUMBER","Value":"8"}},"right":{"term":{"Type":"NUMBER","Value":"2"}}}},"right":{"term":{"Type":"NUMBER","Value":"5"}}}}}}}]', JSON.stringify(input));
   });
 
   test('División a izquierdas', function(){  
