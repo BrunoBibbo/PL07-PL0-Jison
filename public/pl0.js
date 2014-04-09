@@ -166,7 +166,7 @@ case 31: this.$ = { Type: $$[$0-2], left: {ID: $$[$0-3]}, right: {Value: $$[$0-1
 break;
 case 32: this.$ = { Type: $$[$0-3], left: {ID: $$[$0-4]}, right: {Value: $$[$0-2]} };
 	  console.log(this.$);
-	  [this.$].concat($$[$0]); 
+	  this.$.concat($$[$0]); 
 	
 break;
 case 33: this.$ = { Variables: $$[$0-1] }; 

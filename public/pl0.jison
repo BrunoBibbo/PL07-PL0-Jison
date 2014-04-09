@@ -135,7 +135,7 @@ constant
     | ID '=' NUMBER COMA constant
 	{ $$ = { Type: $2, left: {ID: $1}, right: {Value: $3} };
 	  console.log($$);
-	  [$$].concat($5); 
+	  $$.concat($5); 
 	} 
     ;
     
