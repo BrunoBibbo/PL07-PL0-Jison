@@ -45,6 +45,8 @@ expressions
 statements
     : ID '=' e
         { $$ = { Type: $2, left: {ID: $1}, right: {Valor :$3} }; }
+    | P ID
+        { $$ = { Type: $1, Variables: {ID: $2} }; }
     | e
     ;
 
