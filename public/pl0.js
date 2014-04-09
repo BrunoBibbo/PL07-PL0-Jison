@@ -85,7 +85,7 @@ switch (yystate) {
 case 1: 
           this.$ = $$[$0-1]; 
           console.log(this.$);
-          return [this.$, symbol_table];
+          return this.$;
         
 break;
 case 2: this.$ = (typeof $$[$0] === 'undefined')? [] : [ $$[$0] ]; 
