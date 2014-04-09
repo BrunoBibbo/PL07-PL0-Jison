@@ -62,7 +62,7 @@ var assert = chai.assert;
 
   test('Procedure: ', function(){  
     var input = pl0.parse("PROCEDURE a(); VAR a, v; a = 3; v = 4. ");
-    assert.equal('[{"type":"PROCEDURE","value":{"type":"PROCEDURE","value":"a"},"block":[{"type":"VAR","value":"a"},{"type":"VAR","value":"v"},{"type":"=","left":{"type":"ID","value":"a"},"right":{"type":"NUM","value":3}}]},{"type":"=","left":{"type":"ID","value":"v"},"right":{"type":"NUM","value":4}}]', JSON.stringify(input));
+    assert.equal('[{"Type":"BLOCK","CONTENT":{"PROCEDURE":[{"Type":"PROCEDURE","ID":"a","Arguments":[],"Block":{"Type":"BLOCK","CONTENT":{"VARS":{"Type":"VAR","Variables":[[{"Variable":"a"},{"Variable":"v"}]]},"STATEMENTS":{"Type":"=","left":{"ID":"a"},"right":{"Value":{"Type":"NUMBER","Value":"3"}}}}}},null],"STATEMENTS":{"Type":"=","left":{"ID":"v"},"right":{"Value":{"Type":"NUMBER","Value":"4"}}}}}]', JSON.stringify(input));
   });
 
   test('Error de Sintaxis: ', function(){
