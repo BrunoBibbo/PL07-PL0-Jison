@@ -35,7 +35,7 @@ prog
 
 block
     : consts vars procedure statements
-	{ $$ = { Type: 'BLOCK', CONSTS: $1, VARS: $2, PROCEDURE: $3, STATEMENTS: $4 }; }
+	{ $$ = { Type: 'BLOCK', CONTENT: {CONSTS: $1, VARS: $2, PROCEDURE: $3, STATEMENTS: $4} }; }
     ;
     
 consts

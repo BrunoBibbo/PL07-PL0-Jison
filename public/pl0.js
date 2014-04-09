@@ -88,7 +88,7 @@ case 1:
           return this.$;
         
 break;
-case 2: this.$ = { Type: 'BLOCK', CONSTS: $$[$0-3], VARS: $$[$0-2], PROCEDURE: $$[$0-1], STATEMENTS: $$[$0] }; 
+case 2: this.$ = { Type: 'BLOCK', CONTENT: {CONSTS: $$[$0-3], VARS: $$[$0-2], PROCEDURE: $$[$0-1], STATEMENTS: $$[$0]} }; 
 break;
 case 4: this.$ = { Type: $$[$0-1], Constants: [$$[$0]] }; 
 break;
