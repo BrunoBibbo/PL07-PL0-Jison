@@ -90,7 +90,7 @@ case 1:
 break;
 case 2: this.$ = { Type: $$[$0-1], Constants: [$$[$0]] }; 
 break;
-case 3: this.$ = { Type: $$[$0-1], Variables: $$[$0] }; 
+case 3: this.$ = { Type: $$[$0-1], Variables: [$$[$0]] }; 
 break;
 case 4: this.$ = (typeof $$[$0] === 'undefined')? [] : [ $$[$0] ]; 
 break;
@@ -160,20 +160,13 @@ case 29: this.$ = { Type: $$[$0-2], right: {ID: $$[$0-1]} };
 break;
 case 30: this.$ = { Type: $$[$0-2], left: {term: $$[$0-3]}, right: {term: $$[$0-1]} }; 
 break;
-case 31: this.$ = { Type: $$[$0-2], left: {ID: $$[$0-3]}, right: {Value: $$[$0-1]} };
-	  console.log("entra en constant simple");
-	
+case 31: this.$ = { Type: $$[$0-2], left: {ID: $$[$0-3]}, right: {Value: $$[$0-1]} }; 
 break;
-case 32: this.$ = [{ Type: $$[$0-3], left: {ID: $$[$0-4]}, right: {Value: $$[$0-2]} }].concat($$[$0]);
-	  console.log(this.$);
-	
+case 32: this.$ = [{ Type: $$[$0-3], left: {ID: $$[$0-4]}, right: {Value: $$[$0-2]} }].concat($$[$0]); 
 break;
 case 33: this.$ = { Variables: $$[$0-1] }; 
 break;
-case 34: 
-	  this.$ = { Variables: $$[$0-2] }; 
-	  [this.$].concat($$[$0]);
-	
+case 34: this.$ = [{ Variables: $$[$0-2] }].concat($$[$0]); 
 break;
 }
 },

@@ -37,7 +37,7 @@ block
     : CONST constant
 	{ $$ = { Type: $1, Constants: [$2] }; }
     | VAR vars
-	{ $$ = { Type: $1, Variables: $2 }; }
+	{ $$ = { Type: $1, Variables: [$2] }; }
     ;
     
 expressions
@@ -129,21 +129,14 @@ condition
     
 constant
     : ID '=' NUMBER PCOMA
-	{ $$ = { Type: $2, left: {ID: $1}, right: {Value: $3} };
-	  console.log("entra en constant simple");
-	}
+	{ $$ = { Type: $2, left: {ID: $1}, right: {Value: $3} }; }
     | ID '=' NUMBER COMA constant
-	{ $$ = [{ Type: $2, left: {ID: $1}, right: {Value: $3} }].concat($5);
-	  console.log($$);
-	} 
+	{ $$ = [{ Type: $2, left: {ID: $1}, right: {Value: $3} }].concat($5); } 
     ;
     
 vars
     : ID PCOMA
 	{ $$ = { Variables: $1 }; }
     | ID COMA vars
-	{ 
-	  $$ = { Variables: $1 }; 
-	  [$$].concat($3);
-	}
+	{ $$ = [{ Variables: $1 }].concat($3); }
     ;
