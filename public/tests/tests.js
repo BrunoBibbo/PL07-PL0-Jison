@@ -75,7 +75,7 @@ var assert = chai.assert;
   });
   
   test('Var: ', function(){  
-    var input = pl0.parse("VAR a, b; BEGIN a = 5; b = 7 IF (a < b) THEN a = a+1; END.");
+    var input = pl0.parse("VAR a, b; BEGIN a = 5; b = 7; IF (a < b) THEN a = a+1; END.");
     assert.equal('[{"Type":"BLOCK","CONTENT":{"PROCEDURE":[{"Type":"PROCEDURE","ID":"a","Arguments":[],"Block":{"Type":"BLOCK","CONTENT":{"VARS":{"Type":"VAR","Variables":[[{"Variable":"a"},{"Variable":"v"}]]},"STATEMENTS":{"Type":"=","left":{"ID":"a"},"right":{"Value":{"Type":"NUMBER","Value":"3"}}}}}},null],"STATEMENTS":{"Type":"=","left":{"ID":"v"},"right":{"Value":{"Type":"NUMBER","Value":"4"}}}}}]', JSON.stringify(input));
   });
   
@@ -94,7 +94,7 @@ var assert = chai.assert;
  suite('Pruebas de prog', function() {
  
   test('Programa de prueba: ', function(){  
-    var input = pl0.parse("CONST a = 0, b = 3; VAR c, d, e; PROCEDURE alfa(a, b); BEGIN WHILE (a == b) DO IF (c < e) THEN d = c+a; END;.");
+    var input = pl0.parse("CONST a = 0, b = 3; VAR c, d, e; PROCEDURE alfa(a, b); z = 3; BEGIN WHILE (a == b) DO IF (c < e) THEN d = c+a ELSE CALL alfa(a, b); END.");
     assert.equal('[{"Type":"BLOCK","CONTENT":{"CONSTS":{"Type":"CONST","Constants":[[{"Type":"=","left":{"ID":"a"},"right":{"Value":"50"}},{"Type":"=","left":{"ID":"b"},"right":{"Value":"200"}}]]},"VARS":{"Type":"VAR","Variables":[[{"Variable":"x"},{"Variable":"y"}]]},"STATEMENTS":{"Type":"=","left":{"ID":"z"},"right":{"Value":{"Type":"NUMBER","Value":"10"}}}}}]', JSON.stringify(input));
   });
 
