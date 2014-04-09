@@ -100,7 +100,7 @@ args
     
 idnum
     : NUMBER
-	{ $$ = { Type: NUMBER, Value: {Number(yytext)} }; }
+	{ $$ = { Type: NUMBER, Value: {NUM: Number(yytext)} }; }
     | ID
-	{ $$ = { Type: ID, Value: {symbol_table[yytext] || 0} }; }
+	{ $$ = { Type: ID, Value: {ID: symbol_table[yytext] || 0} }; }
     ;
