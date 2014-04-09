@@ -8,7 +8,7 @@ function fact (n) {
 }
 %}
 
-%token PI E IF THEN ELSE WHILE DO P CALL BEGIN END ODD PROCEDURE CONST VAR
+%token NUMBER ID COMPARISON PUNTO COMA PCOMA IF THEN ELSE WHILE DO P CALL BEGIN END ODD PROCEDURE CONST VAR
 /* operator associations and precedence */
 
 %right '='
@@ -33,28 +33,23 @@ prog
 
 	
 expressions
-    : s  
+    : statements  
         { $$ = (typeof $1 === 'undefined')? [] : [ $1 ]; }
-    | expressions ';' s
+    | expressions PCOMA statements
         { $$ = $1;
           if ($3) $$.push($3); 
           console.log($$);
         }
     ;
 
-s
-    : /* empty */
+statements
+    : ID '=' e
+        { $$ = { Type: $2, left: {ID: $1}, right: {Valor :$3} }; }
     | e
     ;
 
 e
-    : ID '=' e
-        { symbol_table[$1] = $$ = $3; }
-    | PI '=' e 
-        { throw new Error("Can't assign to constant 'π'"); }
-    | E '=' e 
-        { throw new Error("Can't assign to math constant 'e'"); }
-    | e '+' e
+    : e '+' e
         {$$ = $1+$3;}
     | e '-' e
         {$$ = $1-$3;}
@@ -82,10 +77,6 @@ e
         {$$ = $2;}
     | NUMBER
         {$$ = Number(yytext);}
-    | E
-        {$$ = Math.E;}
-    | PI
-        {$$ = Math.PI;}
     | ID 
         { $$ = symbol_table[yytext] || 0; }
     ;
