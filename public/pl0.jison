@@ -91,10 +91,10 @@ e
     ;
     
 args
-    : /* empty */
-	{ $$ = []; }
-    | idnum args
+    : idnum args
 	{ $$ = [$1].concat(args); }
+    | /* empty */
+	{ $$ = []; }
     ;
     
 idnum
