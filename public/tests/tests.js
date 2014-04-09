@@ -37,7 +37,7 @@ var assert = chai.assert;
  
   test('Call: ', function(){  
     var input = pl0.parse("CALL prueba(24).");
-    assert.equal('[{"Type":"BLOCK","CONTENT":{"STATEMENTS":{"Type":"call","Procedure":{"ID":"prueba","Arguments":[{"Type":"NUMBER","Value":"24"}]}}}}]', JSON.stringify(input));
+    assert.equal('[{"Type":"BLOCK","CONTENT":{"STATEMENTS":{"Type":"CALL","Procedure":{"ID":"prueba","Arguments":[{"Type":"NUMBER","Value":"24"}]}}}}]', JSON.stringify(input));
   });
 
   test('Program: ', function(){  
