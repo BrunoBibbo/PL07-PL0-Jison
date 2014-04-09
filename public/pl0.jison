@@ -29,7 +29,7 @@ prog
         { 
           $$ = $1; 
           console.log($$);
-          return $$;
+          return [$$];
         }
     ;
 
