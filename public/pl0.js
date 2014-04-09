@@ -164,9 +164,8 @@ case 31: this.$ = { Type: $$[$0-2], left: {ID: $$[$0-3]}, right: {Value: $$[$0-1
 	  console.log("entra en constant simple");
 	
 break;
-case 32: this.$ = { Type: $$[$0-3], left: {ID: $$[$0-4]}, right: {Value: $$[$0-2]} };
+case 32: this.$ = [{ Type: $$[$0-3], left: {ID: $$[$0-4]}, right: {Value: $$[$0-2]} }].concat($$[$0]);
 	  console.log(this.$);
-	  this.$.concat($$[$0]); 
 	
 break;
 case 33: this.$ = { Variables: $$[$0-1] }; 
