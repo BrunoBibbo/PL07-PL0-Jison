@@ -25,7 +25,7 @@ function fact (n) {
 
 %% /* language grammar */
 prog
-    : expressions PUNTO
+    : block PUNTO
         { 
           $$ = $1; 
           console.log($$);
@@ -33,7 +33,11 @@ prog
         }
     ;
 
-	
+block
+    : CONST constant
+	{ $$ = { Type: $1, Variables: $2 }; }
+    ;
+    
 expressions
     : statements  
         { $$ = (typeof $1 === 'undefined')? [] : [ $1 ]; }
@@ -119,4 +123,11 @@ condition
 	{ $$ = { Type: $2, right: {ID: $3} }; }
     | LEFTPAR idnum COMPARISON idnum RIGHTPAR
 	{ $$ = { Type: $3, left: {term: $2}, right: {term: $4} }; }
+    ;
+    
+constant
+    : ID '=' NUMBER PCOMA
+	{ $$ = { Type: $2, left: {ID: $1}, right: {Value: $3} }; }
+    | ID '=' NUMBER COMA constant
+	{ $$ = { Type: $2, left: {ID: $1}, right: {Value: $3} }; } 
     ;
