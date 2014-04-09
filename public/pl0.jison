@@ -43,7 +43,7 @@ expressions
     ;
 
 statements
-    : ID '=' e
+    : ID '=' term
         { $$ = { Type: $2, left: {ID: $1}, right: {Value :$3} }; }
     | P ID
         { $$ = { Type: $1, Variables: {ID: $2} }; }
@@ -54,36 +54,34 @@ statements
 	  else
 	    $$ = { Type: $1, Procedure: {ID: $2} }; 
 	}
-    | e
+    | term
     ;
 
-e
-    : e '+' e
-        {$$ = { Type: $2, left: {e: $1}, right: {e: $3} }; }
-    | e '-' e
-        {$$ = $1-$3;}
-    | e '*' e
-        {$$ = $1*$3;}
-    | e '/' e
+term
+    : term '+' term
+        {$$ = { Type: $2, left: {term: $1}, right: {term: $3} }; }
+    | term '-' term
+        {$$ = { Type: $2, left: {term: $1}, right: {term: $3} }; }
+    | term '*' term
+        {$$ = { Type: $2, left: {term: $1}, right: {term: $3} }; }
+    | term '/' term
         {
           if ($3 == 0) throw new Error("Division by zero, error!");
-          $$ = $1/$3;
+          {$$ = { Type: $2, left: {term: $1}, right: {term: $3} }; }
         }
-    | e '^' e
-        {$$ = Math.pow($1, $3);}
-    | e '!'
+    | term '^' term
+        {$$ = { Type: $2, left: {term: $1}, right: {term: $3} }; }
+    | term '!'
         {
           if ($1 % 1 !== 0) 
              throw "Error! Attempt to compute the factorial of "+
                    "a floating point number "+$1;
-          $$ = fact($1);
+          {$$ = { Type: $2, left: {term: $1} }; }
         }
-    | e '%'
-        {$$ = $1/100;}
-    | '-' e %prec UMINUS
-        {$$ = -$2;}
-    | '(' e ')'
-        {$$ = $2;}
+    | term '%'
+        {$$ = { Type: $2, left: {term: $1} }; }
+    | '-' term %prec UMINUS
+        {$$ = { Type: 'UMINUS', right: {term: -$2} }; }
     | NUMBER
         {$$ = Number(yytext);}
     | ID 
