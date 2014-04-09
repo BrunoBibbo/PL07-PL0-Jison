@@ -66,7 +66,6 @@ var assert = chai.assert;
   });
 
   test('Error de Sintaxis: ', function(){
-    assert.throws(function() { pl0.parse("a = 2;"); }, /Expected "."/);
+    assert.throws(function() { pl0.parse("a = 2;"); }, 'Parse error on line 1:\na = 2;\n-----^\nExpecting \'PUNTO\', got \'PCOMA\'');
   });
-
  });
