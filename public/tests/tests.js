@@ -4,7 +4,7 @@ var assert = chai.assert;
     
   test('Suma', function(){  
     var input = pl0.parse("a = 5 + 8 + 2.");
-    assert.equal('[{"type":"=","left":{"type":"ID","value":"a"},"right":{"type":"+","left":{"type":"+","left":{"type":"NUM","value":5},"right":{"type":"NUM","value":8}},"right":{"type":"NUM","value":2}}}]', JSON.stringify(input));
+    assert.equal('[{"Type":"BLOCK","CONTENT":{"STATEMENTS":{"Type":"=","left":{"ID":"a"},"right":{"Value":{"Type":"+","left":{"term":{"Type":"+","left":{"term":{"Type":"NUMBER","Value":"5"}},"right":{"term":{"Type":"NUMBER","Value":"8"}}}},"right":{"term":{"Type":"NUMBER","Value":"2"}}}}}}}]', JSON.stringify(input));
   });
 
   test('Resta a izquierdas', function(){  
