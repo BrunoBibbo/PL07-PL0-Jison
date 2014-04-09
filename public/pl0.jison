@@ -34,10 +34,40 @@ prog
     ;
 
 block
-    : CONST constant
+    : consts vars procedure statements
+	{ $$ = { Type: 'BLOCK', CONSTS: $1, VARS: $2, PROCEDURE: $3, STATEMENTS: $4 }; }
+    ;
+    
+consts
+    : /* empty */
+    | CONST constant
 	{ $$ = { Type: $1, Constants: [$2] }; }
-    | VAR vars
+    ;
+    
+constant
+    : ID '=' NUMBER PCOMA
+	{ $$ = { Type: $2, left: {ID: $1}, right: {Value: $3} }; }
+    | ID '=' NUMBER COMA constant
+	{ $$ = [{ Type: $2, left: {ID: $1}, right: {Value: $3} }].concat($5); } 
+    ;
+    
+vars
+    : /* empty */
+    | VAR var
 	{ $$ = { Type: $1, Variables: [$2] }; }
+    ;
+    
+var
+    : ID PCOMA
+	{ $$ = { Variable: $1 }; }
+    | ID COMA var
+	{ $$ = [{ Variable: $1 }].concat($3); }
+    ;
+    
+procedure
+    : /* empty */
+    | PROCEDURE ID PCOMA block PCOMA
+	{ $$ = { Type: $1, ID: $2, Block: $4 }; }
     ;
     
 expressions
@@ -125,18 +155,4 @@ condition
 	{ $$ = { Type: $2, right: {ID: $3} }; }
     | LEFTPAR idnum COMPARISON idnum RIGHTPAR
 	{ $$ = { Type: $3, left: {term: $2}, right: {term: $4} }; }
-    ;
-    
-constant
-    : ID '=' NUMBER PCOMA
-	{ $$ = { Type: $2, left: {ID: $1}, right: {Value: $3} }; }
-    | ID '=' NUMBER COMA constant
-	{ $$ = [{ Type: $2, left: {ID: $1}, right: {Value: $3} }].concat($5); } 
-    ;
-    
-vars
-    : ID PCOMA
-	{ $$ = { Variables: $1 }; }
-    | ID COMA vars
-	{ $$ = [{ Variables: $1 }].concat($3); }
     ;
