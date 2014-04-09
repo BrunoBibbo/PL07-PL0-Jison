@@ -88,9 +88,9 @@ term
     | '-' term %prec UMINUS
         {$$ = { Type: 'UMINUS', right: {term: -$2} }; }
     | NUMBER
-        {$$ = Number(yytext);}
+        { $$ = { Type: 'NUMBER', Value: $1 }; }
     | ID 
-        { $$ = symbol_table[yytext] || 0; }
+        { $$ = { Type: 'ID', Value: $1 }; }
     ;
     
 args
