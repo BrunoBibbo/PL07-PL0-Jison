@@ -9,7 +9,7 @@ var assert = chai.assert;
 
   test('Resta a izquierdas', function(){  
     var input = pl0.parse("a = 7 - 2 - 5.");
-    assert.equal('[{"type":"=","left":{"type":"ID","value":"a"},"right":{"type":"-","left":{"type":"-","left":{"type":"NUM","value":7},"right":{"type":"NUM","value":2}},"right":{"type":"NUM","value":5}}}]', JSON.stringify(input));
+    assert.equal('[{"Type":"BLOCK","CONTENT":{"STATEMENTS":{"Type":"=","left":{"ID":"a"},"right":{"Value":{"Type":"-","left":{"term":{"Type":"-","left":{"term":{"Type":"NUMBER","Value":"7"}},"right":{"term":{"Type":"NUMBER","Value":"2"}}}},"right":{"term":{"Type":"NUMBER","Value":"5"}}}}}}}]', JSON.stringify(input));
   });
 
   test('Multiplicación', function(){  
