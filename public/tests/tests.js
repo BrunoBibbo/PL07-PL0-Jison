@@ -29,7 +29,7 @@ var assert = chai.assert;
 
   test('Preferencia de operador - multiplicación', function(){  
     var input = pl0.parse("a = 7 - 1 * 5.");
-    assert.equal('[{"type":"=","left":{"type":"ID","value":"a"},"right":{"type":"-","left":{"type":"NUM","value":7},"right":{"type":"*","left":{"type":"NUM","value":1},"right":{"type":"NUM","value":5}}}}]', JSON.stringify(input));
+    assert.equal('[{"Type":"BLOCK","CONTENT":{"STATEMENTS":{"Type":"=","left":{"ID":"a"},"right":{"Value":{"Type":"-","left":{"term":{"Type":"NUMBER","Value":"7"}},"right":{"term":{"Type":"*","left":{"term":{"Type":"NUMBER","Value":"1"}},"right":{"term":{"Type":"NUMBER","Value":"5"}}}}}}}}}]', JSON.stringify(input));
   });
 
   test('Call', function(){  
