@@ -148,9 +148,9 @@ case 23: this.$ = { Type: 'NUMBER', Value: $$[$0] };
 break;
 case 24: this.$ = { Type: 'ID', Value: $$[$0] }; 
 break;
-case 25: this.$ = $$[$0-3] + $$[$0-2] + $$[$0-1] + $$[$0]; 
+case 25: this.$ = { Type: $$[$0-2], right: {ID: $$[$0-1]} }; 
 break;
-case 26: this.$ = $$[$0-4] + $$[$0-3] + $$[$0-2] + $$[$0-1] + $$[$0]; 
+case 26: this.$ = { Type: $$[$0-2], left: {term: $$[$0-3]}, right: {term: $$[$0-1]} }; 
 break;
 }
 },

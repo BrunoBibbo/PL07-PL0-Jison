@@ -111,7 +111,7 @@ idnum
     
 condition
     : LEFTPAR ODD e RIGHTPAR
-	{ $$ = $1 + $2 + $3 + $4; }
+	{ $$ = { Type: $2, right: {ID: $3} }; }
     | LEFTPAR idnum COMPARISON idnum RIGHTPAR
-	{ $$ = $1 + $2 + $3 + $4 + $5; }
+	{ $$ = { Type: $3, left: {term: $2}, right: {term: $4} }; }
     ;
