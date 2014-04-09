@@ -4,7 +4,6 @@ Practica 7
 Implementación de un analizador sintáctico del lenguaje PL0 realizado en prácticas anteriores usando Jison.
   - [PL0][1]
   - [Jison][2]
-  - [TDOP Douglas Crockford Repository][3]
 
 Enlaces
 --------------
@@ -14,8 +13,8 @@ Enlaces
 
 ##### Desarrollada por
 
-* Bruno Alessio Bibbo. -> Arquitectura, Codificación y Expresiones regulares.
-* Juan Manuel Ramos Perez. -> Estilo, Codificación y Pruebas.
+* Bruno Alessio Bibbo. -> Arquitectura, Codificación, Pruebas y Gramática.
+* Juan Manuel Ramos Perez. -> Estilo, OmniAuth (autenticación), DataMapper.
 
 [1]:http://en.wikipedia.org/wiki/Recursive_descent_parser#Example_parser
 [2]:http://zaach.github.io/jison/
