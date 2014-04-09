@@ -47,7 +47,7 @@ var assert = chai.assert;
 
   test('If: ', function(){  
     var input = pl0.parse("IF (a > 0) THEN a = 20.");
-    assert.equal('[{"type":"IF","condition":{"type":">","left":{"type":"ID","value":"a"},"right":{"type":"NUM","value":0}},"st":{"type":"=","left":{"type":"ID","value":"a"},"right":{"type":"NUM","value":20}}}]', JSON.stringify(input));
+    assert.equal('[{"Type":"BLOCK","CONTENT":{"STATEMENTS":{"Type":"IF","left":{"Condition":{"Type":">","left":{"term":{"Type":"ID","Value":"a"}},"right":{"term":{"Type":"NUMBER","Value":"0"}}}},"right":{"Statement":{"Type":"=","left":{"ID":"a"},"right":{"Value":{"Type":"NUMBER","Value":"20"}}}}}}}]', JSON.stringify(input));
   });
 
   test('If - Else: ', function(){  
