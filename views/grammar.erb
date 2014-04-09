@@ -7,7 +7,7 @@
 </script>
 
 <br>
-Recuerde que un PEG $G$ es una cuaterna $G =(\Sigma,V,P,S)$.
+Recuerde que una gramática (G) Jison es una cuaterna $G =(\Sigma,V,P,S)$.
 <ol>
   <li>$\Sigma$ es el conjunto de terminales. <BR>
   <li>$V$ es un conjunto (disjunto de $\Sigma$) que se denomina conjunto de 
@@ -20,84 +20,93 @@ Recuerde que un PEG $G$ es una cuaterna $G =(\Sigma,V,P,S)$.
   $V$ que se denomina <i>expresión de arranque</i>.
 </ol>
 <ol>
-  <li> $\Sigma = \{ if, then, else, while, do, begin, end, p, call, odd, procedure, const, var, ',', ';', '.', <, >, <=, >=, !=, ==, =, +, -, *, /, (, ), 0 \ldots 9, a \ldots z, A \ldots Z \}$, 
-  <li> $V = \{ program, block, st, condition, exp, term, factor, call_args, const, const_igualdad, const_igualdad_sig, vars, proc, proc_parametros \} \cup$ <br />
-  $\{ASSIGN, ADD, MUL, LEFTPAR, RIGHTPAR, PCOMA, COMA, PUNTO, COMPARISON \} \cup$ <br />
-  $\{IF, THEN, ELSE, ID, NUMBER, WHILE, DO, P, CALL, BEGIN, END, ODD, PROCEDURE, CONST, VAR, CONST\_ID, VAR\_ID, PROC\_ID \}$
-  <li><BR> Reglas de Análisis:
+  <li> $\Sigma = \{ NUMBER, ID, COMPARISON, PUNTO, COMA, PCOMA, IF, THEN, ELSE, WHILE, DO, P, CALL, BEGIN, END, ODD, PROCEDURE, CONST, VAR, '=' , '+', '-', '*', '/', \text{^}, '!', \%, LEFTPAR, RIGHTPAR, UMINUS \}$, 
+  <li> $V = \{ prog, block, consts, constant, vars, var, procedure, expressions, statements, term, args, idnum, condition \}$
+  <li> Productions:
   <ol>
+    <li>
 <pre>
-program = block PUNTO
+prog
+    : block PUNTO
+    ;
 
-block = const? vars? proc* st
+block
+    : consts vars procedure statements
+    ;
+    
+consts
+    : /* empty */
+    | CONST constant
+    ;
+    
+constant
+    : ID '=' NUMBER PCOMA
+    | ID '=' NUMBER COMA constant
+    ;
+    
+vars
+    : /* empty */
+    | VAR var
+    ;
+    
+var
+    : ID PCOMA
+    | ID COMA var
+    ;
+    
+procedure
+    : /* empty */
+    | PROCEDURE ID LEFTPAR args RIGHTPAR PCOMA block PCOMA procedure
+    ;
+    
+expressions
+    : statements
+    | expressions PCOMA statements
+    ;
 
-st     = ID ASSIGN exp
-       / IF condition THEN st ELSE st
-       / IF condition THEN st
-	   / WHILE condition DO st
-	   / BEGIN st PCOMA st END
-	   / P exp
-	   / CALL PROC_ID call_args?
+statements
+    : ID '=' term
+    | P ID
+    | CALL ID LEFTPAR args RIGHTPAR
+    | IF condition THEN statements ELSE statements
+    | IF condition THEN statements
+    | BEGIN expressions PCOMA END
+    | WHILE condition DO statements
+    | term
+    ;
 
-condition = ODD exp
-            /exp COMPARISON exp
-			
-exp    = term   (ADD term)*
-
-term   = factor (MUL factor)*
-
-factor = NUMBER
-       / ID
-       / LEFTPAR exp RIGHTPAR
-
-_ = $[ \t\n\r]*
-
-ASSIGN   = _ '=' _ 
-ADD      = _ [+-] _
-MUL      = _ [*/] _
-PCOMA    = _ ';' _
-COMA     = _ "," _
-PUNTO    = _ '.' _
-COMPARISON = _ $([<>!=]'='/[<>]) _
-LEFTPAR  = _"("_
-RIGHTPAR = _")"_
-IF       = _ "if" _
-THEN     = _ "then" _
-ELSE     = _ "else" _
-WHILE    = _ "while" _
-DO       = _ "do" _
-P        = _ "p" _
-CALL     = _ "call" _
-BEGIN    = _ "begin" _
-END      = _ "end" _
-ODD      = _ "odd" _
-PROCEDURE= _ "procedure" _
-CONST    = _ "const" _
-VAR      = _ "var" _
-ID       = _ id:$([a-zA-Z_][a-zA-Z_0-9]*) _ 
-CONST_ID = _ id:$([a-zA-Z_][a-zA-Z_0-9]*) _
-VAR_ID   = _ id:$([a-zA-Z_][a-zA-Z_0-9]*) _
-PROC_ID  = _ id:$([a-zA-Z_][a-zA-Z_0-9]*) _
-NUMBER   = _ digits:$[0-9]+ _
-
-call_args = LEFTPAR ((ID/NUMBER) (COMA (ID/NUMBER))*)? RIGHTPAR
-
-const = const_igualdad const_igualdad_sig* PCOMA
-
-const_igualdad = CONST CONST_ID ASSIGN NUMBER
-
-const_igualdad_sig = COMA CONST_ID ASSIGN NUMBER
-
-vars = VAR VAR_ID (COMA VAR_ID)* PCOMA
-
-proc = PROCEDURE PROC_ID proc_parametros? PCOMA block PCOMA
-
-proc_parametros = LEFTPAR (ID (COMA ID)*)? RIGHTPAR
+term
+    : term '+' term
+    | term '-' term
+    | term '*' term
+    | term '/' term
+    | term '^' term
+    | term '!'
+    | term '%'
+    | '-' term %prec UMINUS
+    | NUMBER
+    | ID 
+    ;
+    
+args
+    : idnum args
+    | COMA idnum args
+    | /* empty */
+    ;
+    
+idnum
+    : NUMBER
+    | ID
+    ;
+    
+condition
+    : LEFTPAR ODD ID RIGHTPAR
+    | LEFTPAR idnum COMPARISON idnum RIGHTPAR
+    ;
 </pre>
   </ol>
-  <li> Expresión de arranque: $program$
+  <li> Símbolo de arranque: $prog$
 </ol>
-<BR>
 <BR>
 <BR>
 
