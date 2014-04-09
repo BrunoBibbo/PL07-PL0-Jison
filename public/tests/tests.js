@@ -52,7 +52,7 @@ var assert = chai.assert;
 
   test('If - Else: ', function(){  
     var input = pl0.parse("IF (a > 0) THEN a = 20 ELSE a = 50.");
-    assert.equal('[{"type":"IFELSE","condition":{"type":">","left":{"type":"ID","value":"a"},"right":{"type":"NUM","value":0}},"st":{"type":"=","left":{"type":"ID","value":"a"},"right":{"type":"NUM","value":20}},"sf":{"type":"=","left":{"type":"ID","value":"a"},"right":{"type":"NUM","value":50}}}]', JSON.stringify(input));
+    assert.equal('[{"Type":"BLOCK","CONTENT":{"STATEMENTS":{"Type":"IFELSE","left":{"Condition":{"Type":">","left":{"term":{"Type":"ID","Value":"a"}},"right":{"term":{"Type":"NUMBER","Value":"0"}}}},"center":{"Statement":{"Type":"=","left":{"ID":"a"},"right":{"Value":{"Type":"NUMBER","Value":"20"}}}},"right":{"Statement":{"Type":"=","left":{"ID":"a"},"right":{"Value":{"Type":"NUMBER","Value":"50"}}}}}}}]', JSON.stringify(input));
   });
 
   test('While - Do: ', function(){  
