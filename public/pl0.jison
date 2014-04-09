@@ -28,7 +28,6 @@ prog
     : block PUNTO
         { 
           $$ = $1; 
-          console.log($$);
           return [$$];
         }
     ;
@@ -81,7 +80,8 @@ expressions
     ;
 
 statements
-    : ID '=' term
+    : /* empty */
+	| ID '=' term
         { $$ = { Type: $2, left: {ID: $1}, right: {Value :$3} }; }
     | P ID
         { $$ = { Type: $1, Identifiers: {ID: $2} }; }
