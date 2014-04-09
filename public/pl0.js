@@ -88,7 +88,7 @@ case 1:
           return this.$;
         
 break;
-case 2: this.$ = { Type: $$[$0-1], Constants: $$[$0] }; 
+case 2: this.$ = { Type: $$[$0-1], Constants: [$$[$0]] }; 
 break;
 case 3: this.$ = { Type: $$[$0-1], Variables: $$[$0] }; 
 break;

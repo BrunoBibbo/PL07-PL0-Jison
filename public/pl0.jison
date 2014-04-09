@@ -35,7 +35,7 @@ prog
 
 block
     : CONST constant
-	{ $$ = { Type: $1, Constants: $2 }; }
+	{ $$ = { Type: $1, Constants: [$2] }; }
     | VAR vars
 	{ $$ = { Type: $1, Variables: $2 }; }
     ;
