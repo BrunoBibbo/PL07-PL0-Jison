@@ -160,7 +160,7 @@ case 29: this.$ = { Type: $$[$0-2], left: {term: $$[$0-3]}, right: {term: $$[$0-
 break;
 case 30: this.$ = { Type: $$[$0-2], left: {ID: $$[$0-3]}, right: {Value: $$[$0-1]} }; 
 break;
-case 31: this.$ = { Type: $$[$0-3], left: {ID: $$[$0-4]}, right: [$$[$0-2]].concat($$[$0]) }; 
+case 31: this.$ = { Type: $$[$0-3], left: {ID: $$[$0-4]}, right: {Value: $$[$0-2]} Sig_var: $$[$0]}; 
 break;
 }
 },
