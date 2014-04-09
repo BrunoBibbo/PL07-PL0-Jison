@@ -129,5 +129,5 @@ constant
     : ID '=' NUMBER PCOMA
 	{ $$ = { Type: $2, left: {ID: $1}, right: {Value: $3} }; }
     | ID '=' NUMBER COMA constant
-	{ $$ = { Type: $2, left: {ID: $1}, right: {Value: $3} }; } 
+	{ $$ = { Type: $2, left: {ID: $1}, right: {Value: [$3].concat($5)} }; } 
     ;
