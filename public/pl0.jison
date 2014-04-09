@@ -35,7 +35,7 @@ prog
 
 block
     : CONST constant
-	{ $$ = { Type: $1, Variables: $2 }; }
+	{ $$ = { Type: $1, Variables: [$1].concat($2) }; }
     ;
     
 expressions
@@ -129,5 +129,5 @@ constant
     : ID '=' NUMBER PCOMA
 	{ $$ = { Type: $2, left: {ID: $1}, right: {Value: $3} }; }
     | ID '=' NUMBER COMA constant
-	{ $$ = { Type: $2, left: {ID: $1}, right: {Value: $3} Sig_var: $5}; } 
+	{ $$ = { Type: $2, left: {ID: $1}, right: {Value: [$3].concat($5)} }; } 
     ;

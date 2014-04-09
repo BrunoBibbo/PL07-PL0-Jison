@@ -88,7 +88,7 @@ case 1:
           return this.$;
         
 break;
-case 2: this.$ = { Type: $$[$0-1], Variables: $$[$0] }; 
+case 2: this.$ = { Type: $$[$0-1], Variables: [$$[$0-1]].concat($$[$0]) }; 
 break;
 case 3: this.$ = (typeof $$[$0] === 'undefined')? [] : [ $$[$0] ]; 
 break;
@@ -160,7 +160,7 @@ case 29: this.$ = { Type: $$[$0-2], left: {term: $$[$0-3]}, right: {term: $$[$0-
 break;
 case 30: this.$ = { Type: $$[$0-2], left: {ID: $$[$0-3]}, right: {Value: $$[$0-1]} }; 
 break;
-case 31: this.$ = { Type: $$[$0-3], left: {ID: $$[$0-4]}, right: {Value: $$[$0-2]} Sig_var: $$[$0]}; 
+case 31: this.$ = { Type: $$[$0-3], left: {ID: $$[$0-4]}, right: {Value: [$$[$0-2]].concat($$[$0])} }; 
 break;
 }
 },
