@@ -34,39 +34,42 @@ prog
 
 block
     : consts vars procedure statements
-	{ $$ = { Type: 'BLOCK', CONTENT: {CONSTS: $1, VARS: $2, PROCEDURE: $3, STATEMENTS: $4} }; }
+		{ $$ = { Type: 'BLOCK', CONTENT: {CONSTS: $1, VARS: $2, PROCEDURE: $3, STATEMENTS: $4} }; }
     ;
     
 consts
     : /* empty */
+		{ $$ = []; }
     | CONST constant
-	{ $$ = { Type: $1, Constants: [$2] }; }
+		{ $$ = { Type: $1, Constants: [$2] }; }
     ;
     
 constant
     : ID '=' NUMBER PCOMA
-	{ $$ = { Type: $2, left: {ID: $1}, right: {Value: $3} }; }
+		{ $$ = { Type: $2, left: {ID: $1}, right: {Value: $3} }; }
     | ID '=' NUMBER COMA constant
-	{ $$ = [{ Type: $2, left: {ID: $1}, right: {Value: $3} }].concat($5); } 
+		{ $$ = [{ Type: $2, left: {ID: $1}, right: {Value: $3} }].concat($5); } 
     ;
     
 vars
     : /* empty */
+		{ $$ = []; }
     | VAR var
-	{ $$ = { Type: $1, Variables: [$2] }; }
+		{ $$ = { Type: $1, Variables: [$2] }; }
     ;
     
 var
     : ID PCOMA
-	{ $$ = { Variable: $1 }; }
+		{ $$ = { Variable: $1 }; }
     | ID COMA var
-	{ $$ = [{ Variable: $1 }].concat($3); }
+		{ $$ = [{ Variable: $1 }].concat($3); }
     ;
     
 procedure
     : /* empty */
+		{ $$ = []; }
     | PROCEDURE ID LEFTPAR args RIGHTPAR PCOMA block PCOMA procedure
-	{ $$ = [{ Type: $1, ID: $2, Arguments: $4, Block: $7 }].concat($9); }
+		{ $$ = [{ Type: $1, ID: $2, Arguments: $4, Block: $7 }].concat($9); }
     ;
     
 expressions
@@ -92,13 +95,13 @@ statements
 	    $$ = { Type: $1, Procedure: {ID: $2} }; 
 	}
     | IF condition THEN statements ELSE statements
-	{ $$ = { Type: $1+$5, left: {Condition: $2}, center: {Statement: $4}, right: {Statement: $6} }; }
+		{ $$ = { Type: $1+$5, left: {Condition: $2}, center: {Statement: $4}, right: {Statement: $6} }; }
     | IF condition THEN statements
-	{ $$ = { Type: $1, left: {Condition: $2}, right: {Statement: $4} }; }
+		{ $$ = { Type: $1, left: {Condition: $2}, right: {Statement: $4} }; }
     | BEGIN expressions PCOMA END
-	{ $$ = { Type: $1+$4, Expressions: {Statement: $2} }; }
+		{ $$ = { Type: $1+$4, Expressions: {Statement: $2} }; }
     | WHILE condition DO statements
-	{ $$ = { Type: $1+$3, left: {Condition: $2}, right: {Statement: $4} }; }
+		{ $$ = { Type: $1+$3, left: {Condition: $2}, right: {Statement: $4} }; }
     | term
     ;
 
@@ -135,23 +138,23 @@ term
     
 args
     : idnum args
-	{ $$ = [$1].concat($2); }
+		{ $$ = [$1].concat($2); }
     | COMA idnum args
-	{ $$ = [$2].concat($3); }
+		{ $$ = [$2].concat($3); }
     | /* empty */
-	{ $$ = []; }
+		{ $$ = []; }
     ;
     
 idnum
     : NUMBER
-	{ $$ = { Type: 'NUMBER', Value: $1 }; }
+		{ $$ = { Type: 'NUMBER', Value: $1 }; }
     | ID
-	{ $$ = { Type: 'ID', Value: $1 }; }
+		{ $$ = { Type: 'ID', Value: $1 }; }
     ;
     
 condition
     : LEFTPAR ODD ID RIGHTPAR
-	{ $$ = { Type: $2, right: {ID: $3} }; }
+		{ $$ = { Type: $2, right: {ID: $3} }; }
     | LEFTPAR idnum COMPARISON idnum RIGHTPAR
-	{ $$ = { Type: $3, left: {term: $2}, right: {term: $4} }; }
+		{ $$ = { Type: $3, left: {term: $2}, right: {term: $4} }; }
     ;
