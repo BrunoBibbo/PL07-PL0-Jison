@@ -35,9 +35,9 @@ var assert = chai.assert;
 
  suite('Pruebas de bloque', function() {
  
-  test('Call', function(){  
+  test('Call: ', function(){  
     var input = pl0.parse("call prueba(24).");
-    assert.equal('[{"type":"CALL","arguments":[{"type":"NUM","value":24}],"value":{"type":"PROCEDURE","value":"prueba"}}]', JSON.stringify(input));
+    assert.equal('[{"Type":"BLOCK","CONTENT":{"STATEMENTS":{"Type":"call","Procedure":{"ID":"prueba","Arguments":[{"Type":"NUMBER","Value":"24"}]}}}}]', JSON.stringify(input));
   });
 
   test('Program', function(){  
