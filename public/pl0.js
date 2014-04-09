@@ -136,7 +136,7 @@ case 17:this.$ = Number(yytext);
 break;
 case 18: this.$ = symbol_table[yytext] || 0; 
 break;
-case 19: this.$ = [$$[$0-1]].concat(args); 
+case 19: this.$ = [$$[$0-1]].concat($$[$0]); 
 break;
 case 20: this.$ = []; 
 break;

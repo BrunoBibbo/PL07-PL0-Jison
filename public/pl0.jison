@@ -92,7 +92,7 @@ e
     
 args
     : idnum args
-	{ $$ = [$1].concat(args); }
+	{ $$ = [$1].concat($2); }
     | /* empty */
 	{ $$ = []; }
     ;
