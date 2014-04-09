@@ -11,6 +11,7 @@ function fact (n) {
 %token NUMBER ID COMPARISON PUNTO COMA PCOMA IF THEN ELSE WHILE DO P CALL BEGIN END ODD PROCEDURE CONST VAR
 /* operator associations and precedence */
 
+%right THEN ELSE
 %right '='
 %left '+' '-'
 %left '*' '/'
@@ -54,6 +55,10 @@ statements
 	  else
 	    $$ = { Type: $1, Procedure: {ID: $2} }; 
 	}
+    | IF condition THEN statements ELSE statements
+	{ $$ = { Type: $1+$5, left: {Condition: $2}, center: {statement: $4}, right: {statement: $6} }; }
+    | IF condition THEN statements
+	{ $$ = { Type: $1, left: {Condition: $2}, right: {statement: $4} }; }
     | term
     ;
 
@@ -102,4 +107,11 @@ idnum
 	{ $$ = { Type: 'NUMBER', Value: $1 }; }
     | ID
 	{ $$ = { Type: 'ID', Value: $1 }; }
+    ;
+    
+condition
+    : LEFTPAR ODD e RIGHTPAR
+	{ $$ = $1 + $2 + $3 + $4; }
+    | LEFTPAR idnum COMPARISON idnum RIGHTPAR
+	{ $$ = $1 + $2 + $3 + $4 + $5; }
     ;
