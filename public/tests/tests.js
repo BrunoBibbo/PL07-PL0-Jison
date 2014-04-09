@@ -57,7 +57,7 @@ var assert = chai.assert;
 
   test('While - Do: ', function(){  
     var input = pl0.parse("WHILE (b > 0) DO b = b+1.");
-    assert.equal('[{"type":"WHILE","condition":{"type":">","left":{"type":"ID","value":"b"},"right":{"type":"NUM","value":0}},"st":{"type":"=","left":{"type":"ID","value":"b"},"right":{"type":"+","left":{"type":"ID","value":"b"},"right":{"type":"NUM","value":1}}}}]', JSON.stringify(input));
+    assert.equal('[{"Type":"BLOCK","CONTENT":{"STATEMENTS":{"Type":"WHILEDO","left":{"Condition":{"Type":">","left":{"term":{"Type":"ID","Value":"b"}},"right":{"term":{"Type":"NUMBER","Value":"0"}}}},"right":{"Statement":{"Type":"=","left":{"ID":"b"},"right":{"Value":{"Type":"+","left":{"term":{"Type":"ID","Value":"b"}},"right":{"term":{"Type":"NUMBER","Value":"1"}}}}}}}}}]', JSON.stringify(input));
   });
 
   test('Procedure: ', function(){  
