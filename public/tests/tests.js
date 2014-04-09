@@ -24,7 +24,7 @@ var assert = chai.assert;
 
   test('Preferencia de operador - división', function(){  
     var input = pl0.parse("a = 4 + 2 / 2.");
-    assert.equal('[{"type":"=","left":{"type":"ID","value":"a"},"right":{"type":"+","left":{"type":"NUM","value":4},"right":{"type":"/","left":{"type":"NUM","value":2},"right":{"type":"NUM","value":2}}}}]', JSON.stringify(input));
+    assert.equal('[{"Type":"BLOCK","CONTENT":{"STATEMENTS":{"Type":"=","left":{"ID":"a"},"right":{"Value":{"Type":"+","left":{"term":{"Type":"NUMBER","Value":"4"}},"right":{"term":{"Type":"/","left":{"term":{"Type":"NUMBER","Value":"2"}},"right":{"term":{"Type":"NUMBER","Value":"2"}}}}}}}}}]', JSON.stringify(input));
   });
 
   test('Preferencia de operador - multiplicación', function(){  
