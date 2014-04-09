@@ -91,8 +91,10 @@ e
     ;
     
 args
-    : idnum COMA args
+    : idnum args
 	{ $$ = [$1].concat($2); }
+    | COMA idnum args
+	{ $$ = [$2].concat($3); }
     | /* empty */
 	{ $$ = []; }
     ;
