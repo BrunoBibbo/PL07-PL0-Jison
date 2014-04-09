@@ -12,6 +12,7 @@ function fact (n) {
 /* operator associations and precedence */
 
 %right THEN ELSE
+%right BEGIN END
 %right '='
 %left '+' '-'
 %left '*' '/'
@@ -59,6 +60,8 @@ statements
 	{ $$ = { Type: $1+$5, left: {Condition: $2}, center: {statement: $4}, right: {statement: $6} }; }
     | IF condition THEN statements
 	{ $$ = { Type: $1, left: {Condition: $2}, right: {statement: $4} }; }
+    | BEGIN expressions PCOMA END
+	{ $$ = { Type: $1+$4, Expressions: {statement: $2} }; }
     | term
     ;
 
