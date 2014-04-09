@@ -19,7 +19,7 @@ var assert = chai.assert;
 
   test('División a izquierdas', function(){  
     var input = pl0.parse("a = 5 / 7 / 3.");
-    assert.equal('[{"type":"=","left":{"type":"ID","value":"a"},"right":{"type":"/","left":{"type":"/","left":{"type":"NUM","value":5},"right":{"type":"NUM","value":7}},"right":{"type":"NUM","value":3}}}]', JSON.stringify(input));
+    assert.equal('[{"Type":"BLOCK","CONTENT":{"STATEMENTS":{"Type":"=","left":{"ID":"a"},"right":{"Value":{"Type":"/","left":{"term":{"Type":"/","left":{"term":{"Type":"NUMBER","Value":"5"}},"right":{"term":{"Type":"NUMBER","Value":"7"}}}},"right":{"term":{"Type":"NUMBER","Value":"3"}}}}}}}]', JSON.stringify(input));
   });
 
   test('Preferencia de operador - división', function(){  
