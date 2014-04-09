@@ -42,7 +42,7 @@ var assert = chai.assert;
 
   test('Program: ', function(){  
     var input = pl0.parse("CONST a=50, b=200; VAR x,y; z = 10.");
-    assert.equal('[{"type":"=","left":{"type":"CONST","value":"a"},"right":{"type":"NUM","value":50}},{"type":"=","left":{"type":"CONST","value":"b"},"right":{"type":"NUM","value":200}},{"type":"VAR","value":"x"},{"type":"VAR","value":"y"},{"type":"=","left":{"type":"ID","value":"z"},"right":{"type":"NUM","value":10}}]', JSON.stringify(input));
+    assert.equal('[{"Type":"BLOCK","CONTENT":{"CONSTS":{"Type":"CONST","Constants":[[{"Type":"=","left":{"ID":"a"},"right":{"Value":"50"}},{"Type":"=","left":{"ID":"b"},"right":{"Value":"200"}}]]},"VARS":{"Type":"VAR","Variables":[[{"Variable":"x"},{"Variable":"y"}]]},"STATEMENTS":{"Type":"=","left":{"ID":"z"},"right":{"Value":{"Type":"NUMBER","Value":"10"}}}}}]', JSON.stringify(input));
   });
 
   test('If: ', function(){  
