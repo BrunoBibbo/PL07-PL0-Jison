@@ -74,9 +74,9 @@
 var pl0 = (function(){
 var parser = {trace: function trace() { },
 yy: {},
-symbols_: {"error":2,"prog":3,"block":4,"PUNTO":5,"CONST":6,"constant":7,"expressions":8,"statements":9,"PCOMA":10,"ID":11,"=":12,"term":13,"P":14,"CALL":15,"LEFTPAR":16,"args":17,"RIGHTPAR":18,"IF":19,"condition":20,"THEN":21,"ELSE":22,"BEGIN":23,"END":24,"WHILE":25,"DO":26,"+":27,"-":28,"*":29,"/":30,"^":31,"!":32,"%":33,"NUMBER":34,"idnum":35,"COMA":36,"ODD":37,"e":38,"COMPARISON":39,"$accept":0,"$end":1},
-terminals_: {2:"error",5:"PUNTO",6:"CONST",10:"PCOMA",11:"ID",12:"=",14:"P",15:"CALL",16:"LEFTPAR",18:"RIGHTPAR",19:"IF",21:"THEN",22:"ELSE",23:"BEGIN",24:"END",25:"WHILE",26:"DO",27:"+",28:"-",29:"*",30:"/",31:"^",32:"!",33:"%",34:"NUMBER",36:"COMA",37:"ODD",38:"e",39:"COMPARISON"},
-productions_: [0,[3,2],[4,2],[8,1],[8,3],[9,3],[9,2],[9,5],[9,6],[9,4],[9,4],[9,4],[9,1],[13,3],[13,3],[13,3],[13,3],[13,3],[13,2],[13,2],[13,2],[13,1],[13,1],[17,2],[17,3],[17,0],[35,1],[35,1],[20,4],[20,5],[7,4],[7,5]],
+symbols_: {"error":2,"prog":3,"block":4,"PUNTO":5,"CONST":6,"constant":7,"VAR":8,"vars":9,"expressions":10,"statements":11,"PCOMA":12,"ID":13,"=":14,"term":15,"P":16,"CALL":17,"LEFTPAR":18,"args":19,"RIGHTPAR":20,"IF":21,"condition":22,"THEN":23,"ELSE":24,"BEGIN":25,"END":26,"WHILE":27,"DO":28,"+":29,"-":30,"*":31,"/":32,"^":33,"!":34,"%":35,"NUMBER":36,"idnum":37,"COMA":38,"ODD":39,"e":40,"COMPARISON":41,"$accept":0,"$end":1},
+terminals_: {2:"error",5:"PUNTO",6:"CONST",8:"VAR",12:"PCOMA",13:"ID",14:"=",16:"P",17:"CALL",18:"LEFTPAR",20:"RIGHTPAR",21:"IF",23:"THEN",24:"ELSE",25:"BEGIN",26:"END",27:"WHILE",28:"DO",29:"+",30:"-",31:"*",32:"/",33:"^",34:"!",35:"%",36:"NUMBER",38:"COMA",39:"ODD",40:"e",41:"COMPARISON"},
+productions_: [0,[3,2],[4,2],[4,2],[10,1],[10,3],[11,3],[11,2],[11,5],[11,6],[11,4],[11,4],[11,4],[11,1],[15,3],[15,3],[15,3],[15,3],[15,3],[15,2],[15,2],[15,2],[15,1],[15,1],[19,2],[19,3],[19,0],[37,1],[37,1],[22,4],[22,5],[7,4],[7,5],[9,2],[9,3]],
 performAction: function anonymous(yytext, yyleng, yylineno, yy, yystate /* action[1] */, $$ /* vstack */, _$ /* lstack */) {
 /* this == yyval */
 
@@ -88,84 +88,95 @@ case 1:
           return this.$;
         
 break;
-case 2: this.$ = { Type: $$[$0-1], Variables: [$$[$0-1]].concat($$[$0]) }; 
+case 2: this.$ = { Type: $$[$0-1], Constants: $$[$0] }; 
 break;
-case 3: this.$ = (typeof $$[$0] === 'undefined')? [] : [ $$[$0] ]; 
+case 3: this.$ = { Type: $$[$0-1], Variables: $$[$0] }; 
 break;
-case 4: this.$ = $$[$0-2];
+case 4: this.$ = (typeof $$[$0] === 'undefined')? [] : [ $$[$0] ]; 
+break;
+case 5: this.$ = $$[$0-2];
           if ($$[$0]) this.$.push($$[$0]); 
           console.log(this.$);
         
 break;
-case 5: this.$ = { Type: $$[$0-1], left: {ID: $$[$0-2]}, right: {Value :$$[$0]} }; 
+case 6: this.$ = { Type: $$[$0-1], left: {ID: $$[$0-2]}, right: {Value :$$[$0]} }; 
 break;
-case 6: this.$ = { Type: $$[$0-1], Variables: {ID: $$[$0]} }; 
+case 7: this.$ = { Type: $$[$0-1], Identifiers: {ID: $$[$0]} }; 
 break;
-case 7: 
+case 8: 
 	  if($$[$0-1])
 	    this.$ = { Type: $$[$0-4], Procedure: {ID: $$[$0-3], Arguments: $$[$0-1]} };
 	  else
 	    this.$ = { Type: $$[$0-4], Procedure: {ID: $$[$0-3]} }; 
 	
 break;
-case 8: this.$ = { Type: $$[$0-5]+$$[$0-1], left: {Condition: $$[$0-4]}, center: {Statement: $$[$0-2]}, right: {Statement: $$[$0]} }; 
+case 9: this.$ = { Type: $$[$0-5]+$$[$0-1], left: {Condition: $$[$0-4]}, center: {Statement: $$[$0-2]}, right: {Statement: $$[$0]} }; 
 break;
-case 9: this.$ = { Type: $$[$0-3], left: {Condition: $$[$0-2]}, right: {Statement: $$[$0]} }; 
+case 10: this.$ = { Type: $$[$0-3], left: {Condition: $$[$0-2]}, right: {Statement: $$[$0]} }; 
 break;
-case 10: this.$ = { Type: $$[$0-3]+$$[$0], Expressions: {Statement: $$[$0-2]} }; 
+case 11: this.$ = { Type: $$[$0-3]+$$[$0], Expressions: {Statement: $$[$0-2]} }; 
 break;
-case 11: this.$ = { Type: $$[$0-3]+$$[$0-1], left: {Condition: $$[$0-2]}, right: {Statement: $$[$0]} }; 
-break;
-case 13:this.$ = { Type: $$[$0-1], left: {term: $$[$0-2]}, right: {term: $$[$0]} }; 
+case 12: this.$ = { Type: $$[$0-3]+$$[$0-1], left: {Condition: $$[$0-2]}, right: {Statement: $$[$0]} }; 
 break;
 case 14:this.$ = { Type: $$[$0-1], left: {term: $$[$0-2]}, right: {term: $$[$0]} }; 
 break;
 case 15:this.$ = { Type: $$[$0-1], left: {term: $$[$0-2]}, right: {term: $$[$0]} }; 
 break;
-case 16:
+case 16:this.$ = { Type: $$[$0-1], left: {term: $$[$0-2]}, right: {term: $$[$0]} }; 
+break;
+case 17:
           if ($$[$0] == 0) throw new Error("Division by zero, error!");
           {this.$ = { Type: $$[$0-1], left: {term: $$[$0-2]}, right: {term: $$[$0]} }; }
         
 break;
-case 17:this.$ = { Type: $$[$0-1], left: {term: $$[$0-2]}, right: {term: $$[$0]} }; 
+case 18:this.$ = { Type: $$[$0-1], left: {term: $$[$0-2]}, right: {term: $$[$0]} }; 
 break;
-case 18:
+case 19:
           if ($$[$0-1] % 1 !== 0) 
              throw "Error! Attempt to compute the factorial of "+
                    "a floating point number "+$$[$0-1];
           {this.$ = { Type: $$[$0], left: {term: $$[$0-1]} }; }
         
 break;
-case 19:this.$ = { Type: $$[$0], left: {term: $$[$0-1]} }; 
+case 20:this.$ = { Type: $$[$0], left: {term: $$[$0-1]} }; 
 break;
-case 20:this.$ = { Type: 'UMINUS', right: {term: -$$[$0]} }; 
+case 21:this.$ = { Type: 'UMINUS', right: {term: -$$[$0]} }; 
 break;
-case 21: this.$ = { Type: 'NUMBER', Value: $$[$0] }; 
+case 22: this.$ = { Type: 'NUMBER', Value: $$[$0] }; 
 break;
-case 22: this.$ = { Type: 'ID', Value: $$[$0] }; 
-break;
-case 23: this.$ = [$$[$0-1]].concat($$[$0]); 
+case 23: this.$ = { Type: 'ID', Value: $$[$0] }; 
 break;
 case 24: this.$ = [$$[$0-1]].concat($$[$0]); 
 break;
-case 25: this.$ = []; 
+case 25: this.$ = [$$[$0-1]].concat($$[$0]); 
 break;
-case 26: this.$ = { Type: 'NUMBER', Value: $$[$0] }; 
+case 26: this.$ = []; 
 break;
-case 27: this.$ = { Type: 'ID', Value: $$[$0] }; 
+case 27: this.$ = { Type: 'NUMBER', Value: $$[$0] }; 
 break;
-case 28: this.$ = { Type: $$[$0-2], right: {ID: $$[$0-1]} }; 
+case 28: this.$ = { Type: 'ID', Value: $$[$0] }; 
 break;
-case 29: this.$ = { Type: $$[$0-2], left: {term: $$[$0-3]}, right: {term: $$[$0-1]} }; 
+case 29: this.$ = { Type: $$[$0-2], right: {ID: $$[$0-1]} }; 
 break;
-case 30: this.$ = { Type: $$[$0-2], left: {ID: $$[$0-3]}, right: {Value: $$[$0-1]} }; 
+case 30: this.$ = { Type: $$[$0-2], left: {term: $$[$0-3]}, right: {term: $$[$0-1]} }; 
 break;
-case 31: this.$ = { Type: $$[$0-3], left: {ID: $$[$0-4]}, right: {Value: [$$[$0-2]].concat($$[$0])} }; 
+case 31: this.$ = [{ Type: $$[$0-2], left: {ID: $$[$0-3]}, right: {Value: $$[$0-1]} }]; 
+break;
+case 32: this.$ = [{ Type: $$[$0-3], left: {ID: $$[$0-4]}, right: {Value: $$[$0-2]} }];
+	  this.$.concat($$[$0]); 
+	
+break;
+case 33: this.$ = [{ Variables: $$[$0-1] }]; 
+break;
+case 34: 
+	  this.$ = [{ Variables: $$[$0-2] }]; 
+	  this.$.concat($$[$0]);
+	
 break;
 }
 },
-table: [{3:1,4:2,6:[1,3]},{1:[3]},{5:[1,4]},{7:5,11:[1,6]},{1:[2,1]},{5:[2,2]},{12:[1,7]},{34:[1,8]},{10:[1,9],36:[1,10]},{5:[2,30]},{7:11,11:[1,6]},{5:[2,31]}],
-defaultActions: {4:[2,1],5:[2,2],9:[2,30],11:[2,31]},
+table: [{3:1,4:2,6:[1,3],8:[1,4]},{1:[3]},{5:[1,5]},{7:6,13:[1,7]},{9:8,13:[1,9]},{1:[2,1]},{5:[2,2]},{14:[1,10]},{5:[2,3]},{12:[1,11],38:[1,12]},{36:[1,13]},{5:[2,33]},{9:14,13:[1,9]},{12:[1,15],38:[1,16]},{5:[2,34]},{5:[2,31]},{7:17,13:[1,7]},{5:[2,32]}],
+defaultActions: {5:[2,1],6:[2,2],8:[2,3],11:[2,33],14:[2,34],15:[2,31],17:[2,32]},
 parseError: function parseError(str, hash) {
     if (hash.recoverable) {
         this.trace(str);
@@ -643,17 +654,17 @@ var YYSTATE=YY_START;
 switch($avoiding_name_collisions) {
 case 0:/* skip whitespace and comments */
 break;
-case 1:return 34
+case 1:return 36
 break;
-case 2:return 10
+case 2:return 12
 break;
-case 3:return 36
+case 3:return 38
 break;
-case 4:return 39
+case 4:return 41
 break;
-case 5:return 16
+case 5:return 18
 break;
-case 6:return 18
+case 6:return 20
 break;
 case 7:return idORrw(yy_.yytext)
 break;

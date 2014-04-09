@@ -35,7 +35,9 @@ prog
 
 block
     : CONST constant
-	{ $$ = { Type: $1, Variables: [$1].concat($2) }; }
+	{ $$ = { Type: $1, Constants: $2 }; }
+    | VAR vars
+	{ $$ = { Type: $1, Variables: $2 }; }
     ;
     
 expressions
@@ -52,7 +54,7 @@ statements
     : ID '=' term
         { $$ = { Type: $2, left: {ID: $1}, right: {Value :$3} }; }
     | P ID
-        { $$ = { Type: $1, Variables: {ID: $2} }; }
+        { $$ = { Type: $1, Identifiers: {ID: $2} }; }
     | CALL ID LEFTPAR args RIGHTPAR
 	{ 
 	  if($4)
@@ -127,7 +129,19 @@ condition
     
 constant
     : ID '=' NUMBER PCOMA
-	{ $$ = { Type: $2, left: {ID: $1}, right: {Value: $3} }; }
+	{ $$ = [{ Type: $2, left: {ID: $1}, right: {Value: $3} }]; }
     | ID '=' NUMBER COMA constant
-	{ $$ = { Type: $2, left: {ID: $1}, right: {Value: [$3].concat($5)} }; } 
+	{ $$ = [{ Type: $2, left: {ID: $1}, right: {Value: $3} }];
+	  $$.concat($5); 
+	} 
+    ;
+    
+vars
+    : ID PCOMA
+	{ $$ = [{ Variables: $1 }]; }
+    | ID COMA vars
+	{ 
+	  $$ = [{ Variables: $1 }]; 
+	  $$.concat($3);
+	}
     ;
