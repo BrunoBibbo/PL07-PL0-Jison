@@ -1,18 +1,8 @@
-/* description: Parses end executes mathematical expressions. */
-
-%{
-var symbol_table = {};
-
-function fact (n) { 
-  return n==0 ? 1 : fact(n-1) * n 
-}
-%}
 
 %token NUMBER ID COMPARISON PUNTO COMA PCOMA IF THEN ELSE WHILE DO P CALL BEGIN END ODD PROCEDURE CONST VAR
-/* operator associations and precedence */
+/* Asociacion de operadores y precedencia (de menor a mayor) */
 
 %right THEN ELSE
-%right BEGIN END
 %right '='
 %left '+' '-'
 %left '*' '/'
