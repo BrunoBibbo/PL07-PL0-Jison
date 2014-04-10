@@ -20,12 +20,11 @@ Recuerde que una gramática (G) Jison es una cuaterna $G =(\Sigma,V,P,S)$.
   $V$ que se denomina <i>expresión de arranque</i>.
 </ol>
 <ol>
-  <li> $\Sigma = \{ NUMBER, ID, COMPARISON, PUNTO, COMA, PCOMA, IF, THEN, ELSE, WHILE, DO, P, CALL, BEGIN, END, ODD, PROCEDURE, CONST, VAR, '=' , '+', '-', '*', '/', \text{^}, '!', \%, LEFTPAR, RIGHTPAR, UMINUS \}$, 
+  <li> $\Sigma = \{ NUMBER, ID, COMPARISON, PUNTO, COMA, PCOMA, IF, THEN, ELSE, WHILE, DO, P, CALL, BEGIN, END, ODD, PROCEDURE, CONST, VAR, =, +, -, *, /, \text{^}, !, \%, LEFTPAR, RIGHTPAR, UMINUS \}$, 
   <li> $V = \{ prog, block, consts, constant, vars, var, procedure, expressions, statements, term, args, idnum, condition \}$
   <li> Productions:
   <ol>
     <li>
-<pre>
 prog
     : block PUNTO
     ;
@@ -103,7 +102,6 @@ condition
     : LEFTPAR ODD ID RIGHTPAR
     | LEFTPAR idnum COMPARISON idnum RIGHTPAR
     ;
-</pre>
   </ol>
   <li> Símbolo de arranque: $prog$
 </ol>
