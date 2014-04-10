@@ -1,12 +1,13 @@
 require 'omniauth'
 require 'omniauth-oauth2'
 require 'omniauth-google-oauth2'
-require 'omniauth-twitter'
+require 'omniauth-facebook'
 
 use OmniAuth::Builder do
   config = YAML.load_file 'config/config.yml'
   provider :google_oauth2, config['identifier'], config['secret']
-  provider :twitter, confir['idtwitter'], config['secrettwitter']
+  provider :twitter, config['idfacebook'], config['secretfacebook']
+
 end
 
 get '/auth/:provider/callback' do
